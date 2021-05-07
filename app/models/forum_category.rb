@@ -1,0 +1,2 @@
+class ForumCategory < ApplicationRecord
+end

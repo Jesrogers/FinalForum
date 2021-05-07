@@ -1,0 +1,2 @@
+module ForumCategoryHelper
+end

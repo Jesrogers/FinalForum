@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
     def home
-        render layout: 'home'
+        render 'static_pages/home', layout: 'home'
     end
 end
