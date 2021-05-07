@@ -1,4 +1,6 @@
-@import "variables";
+@import "base/normalize";
+@import "base/variables";
+@import "base/base";
+@import "base/layouts";
 
-@import "base";
-@import "header";
+@import "banners/header";

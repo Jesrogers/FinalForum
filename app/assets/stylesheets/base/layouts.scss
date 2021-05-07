@@ -1,0 +1,15 @@
+.row {
+    display: flex;
+    max-width: $container-width;
+    margin: 0 auto;
+
+    .col-1-of-2 {
+        background: lightblue;
+        width: 50%;
+        height: 12.5rem;
+
+        &:not(:last-child) {
+            margin-right: 1.25rem;
+        }
+    }
+}
