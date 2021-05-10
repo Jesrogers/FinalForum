@@ -1,0 +1,12 @@
+<div class="channel">
+    <header class="channel__header">
+        <%= channel.name %>
+        <%= link_to "Edit", edit_channel_path(channel) %>
+        <%= link_to "Delete", channel_path(channel), method: :delete %>
+    </header>
+    <div class="channel__content">
+        <% channel.forums.each do |forum| %>
+            <%= render "forum_card", forum: forum %>
+        <% end %>
+    </div>
+</div>

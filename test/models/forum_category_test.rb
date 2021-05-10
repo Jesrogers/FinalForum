@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ForumCategoryTest < ActiveSupport::TestCase
+class ChannelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

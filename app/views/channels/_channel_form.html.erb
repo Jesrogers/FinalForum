@@ -1,0 +1,11 @@
+<%= form_with model: channel do |form| %>
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+    </div>
+    <div>
+        <%= form.label :position %>
+        <%= form.number_field :position %>
+    </div>
+    <%= form.submit "Create" %>
+<% end %>

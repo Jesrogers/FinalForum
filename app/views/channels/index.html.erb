@@ -1,0 +1,8 @@
+<h1>Forums</h1>
+<%= link_to "Create Channel", new_channel_path %>
+
+<section class="intro">
+    <div class="row">
+        <%= render partial: "channel", collection: @channels.ordered_by_position %>
+    </div>
+</section>

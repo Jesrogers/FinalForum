@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ForumCategoryControllerTest < ActionDispatch::IntegrationTest
+class ChannelControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

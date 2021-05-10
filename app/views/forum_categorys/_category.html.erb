@@ -1,8 +1,0 @@
-<div class="category">
-    <header class="category__header"><%= category.name %></header>
-    <div class="category__content">
-        <% category.forums.each do |forum| %>
-            <%= render "forum_card", forum: forum %>
-        <% end %>
-    </div>
-</div>
