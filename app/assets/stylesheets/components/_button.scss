@@ -13,7 +13,7 @@
     }
 
     &:hover, &:focus, &:active {
-        transform: scale(.98);
+        transform: scale(.95);
         background: darken($color: $m3, $amount: 5%);
     }
     
