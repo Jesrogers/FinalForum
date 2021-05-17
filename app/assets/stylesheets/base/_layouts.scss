@@ -1,7 +1,5 @@
 .row {
     display: flex;
-    max-width: $container-width;
-    margin: 0 auto;
 
     .col-1-of-2 {
         background: lightblue;
@@ -12,4 +10,14 @@
             margin-right: 1.25rem;
         }
     }
+
+    &.direction-column {
+        flex-direction: column;
+    }
+}
+
+.container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 0 1.875rem;
 }

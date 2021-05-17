@@ -3,18 +3,23 @@
         <%= link_to root_path do %>
             <%= image_tag 'https://uilogos.co/img/logomark/leaf.png', class: "site-header__logo" %>
         <% end %>
-        <nav class="nav">
+        <nav class="nav start">
             <ul class="nav__list">
-                <li class="nav__item"><%= link_to 'Forums', channels_path, class: "nav__link" %></li>
+                <li class="nav__item"><%= link_to 'Forums', '/forums', class: "nav__link" %></li>
                 <li class="nav__item"><%= link_to 'Latest', '#', class: "nav__link" %></li>
             </ul>
         </nav>
-        <nav class="nav">
+        <nav class="nav end">
             <ul class="nav__list">
                 <li class="nav__item"><%= link_to 'Register', new_user_registration_path, class: "nav__link" %></li>
                 <li class="nav__item"><%= link_to 'Login', new_user_session_path, class: "nav__link" %></li>
                 <li class="nav__item"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav__link" %></li>
             </ul>
-        </nav>   
+        </nav> 
+        <button class="menu-trigger">
+            <span class="menu-trigger__bar"></span>
+            <span class="menu-trigger__bar"></span>
+            <span class="menu-trigger__bar"></span>
+        </button>
     </div>
 </header>

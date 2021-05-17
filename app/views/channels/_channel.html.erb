@@ -1,12 +1,17 @@
 <div class="channel">
     <header class="channel__header">
-        <%= channel.name %>
-        <%= link_to "Edit", edit_channel_path(channel) %>
-        <%= link_to "Delete", channel_path(channel), method: :delete %>
+        <h3><%= channel.name %></h3>
+        <%= link_to edit_channel_path(channel) do %>
+            <span class="fa fa-edit"></span>
+        <% end %>
+        <%= link_to channel_path(channel), method: :delete, data: {confirm: "Are you sure you want to delete the channel #{channel.name} and all associated forums?"} do %>
+            <span class="fa fa-trash"></span>            
+        <% end %>
     </header>
     <div class="channel__content">
         <% channel.forums.each do |forum| %>
             <%= render "forum_card", forum: forum %>
         <% end %>
+            <%= render "add_forum_link" %>
     </div>
 </div>

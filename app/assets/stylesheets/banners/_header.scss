@@ -3,6 +3,7 @@
 
     &__top {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         padding: 0.625em 1.25rem;
         background-color: $m1;
@@ -19,7 +20,13 @@
     }
 
     .nav {
-        &:first-of-type {
+        display: none;
+
+        @media (min-width: 900px) {
+            display: block;
+        }
+
+        &.start {
             margin-right: auto;
         }
 
@@ -33,7 +40,7 @@
 
         &__link {
             position: relative;
-            padding: 1rem 1.25rem;
+            padding: 0.8rem 1.25rem;
             color: $color-white;
             font-weight: 700;
             font-size: 1.125rem;
@@ -41,7 +48,7 @@
             transition: .2s all;
             z-index: 2;
 
-            &:hover {
+            &:hover, &:focus {
                 &::after {
                     opacity: 1;
                     animation: fill ease-in .25s forwards; 
@@ -60,6 +67,44 @@
             }
         }
     }
+
+    .menu-trigger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 1.875rem;
+        height: 1.5625rem;
+        position: relative;
+        background: none;
+        border: none;
+        color: $color-white;
+
+        &__bar {
+            height: 3px;
+            width: 100%;
+            background-color: $color-white;
+            transition: all .25s;
+        }
+
+        @media (min-width: 900px) {
+            display: none;
+        }
+
+        .menu-open & {
+            &__bar {
+                &:nth-child(2) { opacity: 0 }
+
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotateZ(-45deg);
+
+                &:last-child {
+                    transform: translate(-50%, -50%) rotateZ(45deg);                                        
+                }
+            }
+        }
+    } 
 }
 
 .hero {

@@ -1,0 +1,26 @@
+.add-forum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 11.25rem;
+    padding: 1rem;
+    box-shadow: 0 .4rem 1rem rgba($color-black, .35);  
+    border: 2px dashed $m1;
+    border-radius: 6px;
+    background: lighten($m3, 50%);
+    color: $m1;
+    text-decoration: none;
+    transition: 0.25s all;
+
+    &:hover, &:focus, &:active {
+        transform: scale(0.95);
+        box-shadow: 0 0.2rem 0.8rem rgba($color-black, .15);          
+    }
+
+    h4 {
+        margin-bottom: 0.6em;
+        font-size: 1.25rem;
+    }
+    
+}
