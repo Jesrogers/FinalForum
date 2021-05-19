@@ -11,7 +11,7 @@ class ChannelsController < ApplicationController
         @channel = Channel.new(channel_params)
 
         if @channel.save
-            redirect_to channels_path
+            redirect_to '/forums'
         else
             render :new
         end
@@ -25,7 +25,7 @@ class ChannelsController < ApplicationController
         @channel = Channel.find(params[:id])
 
         if @channel.update(channel_params)
-            redirect_to channels_path
+            redirect_to '/forums'
         else
             render :edit
         end
@@ -34,7 +34,7 @@ class ChannelsController < ApplicationController
     def destroy
          @channel = Channel.find(params[:id])
          @channel.destroy
-         redirect_to channels_path
+         redirect_to '/forums'
     end
 
     private 

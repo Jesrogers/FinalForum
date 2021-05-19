@@ -1,4 +1,4 @@
-<a class="forum-card" href="#">
+<%= link_to forum_path(forum), class: "forum-card" do %>
     <header>
         <h4><%= forum.title %></h4>
     </header>
@@ -6,4 +6,4 @@
         <p><%= forum.description %></p>
     </div>
     <footer></footer>
-</a>
+<% end %>

@@ -1,4 +1,4 @@
-<a class="add-forum" href="#">
+<%= link_to new_forum_path(channel: channel), class: "add-forum" do %>
     <header>
         <h4>Add Forum</h4>
     </header>
@@ -6,4 +6,4 @@
         <span class="fa fa-plus"></span>
     </div>
     <footer></footer>
-</a>
+<% end %>

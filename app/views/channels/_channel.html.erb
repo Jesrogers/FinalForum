@@ -9,9 +9,9 @@
         <% end %>
     </header>
     <div class="channel__content">
-        <% channel.forums.each do |forum| %>
+        <% channel.forums.ordered_by_position.each do |forum| %>
             <%= render "forum_card", forum: forum %>
         <% end %>
-            <%= render "add_forum_link" %>
+        <%= render "add_forum_link", channel: channel %>
     </div>
 </div>
