@@ -4,7 +4,7 @@
     </div>
     <div class="form__field">
         <%= form.label :title, class: "form__label" %>
-        <%= form.text_field :title, class: "form__input" %>
+        <%= form.text_field :title, required: true, class: "form__input" %>
     </div>
     <div class="form__field">
         <%= form.label :description, class: "form__label" %>
@@ -17,8 +17,8 @@
         </div>
     </div>
     <div class="form__field">
-        <%= form.label :order, class: "form__label" %>
-        <%= form.number_field :order, class: "form__input" %>
+        <%= form.label :position, class: "form__label" %>
+        <%= form.number_field :position, class: "form__input", value: 1 %>
     </div>
     <div class="form__field form__field--row">
         <%= form.check_box :locked, class: "form__checkbox" %>
