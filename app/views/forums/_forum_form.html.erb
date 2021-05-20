@@ -1,6 +1,6 @@
 <%= form_with model: forum, class: "form" do |form| %>
     <div class="form__title">
-        <h1>Add Forum</h1>
+        <h1><%= form_title %></h1>
     </div>
     <div class="form__field">
         <%= form.label :title, class: "form__label" %>
@@ -18,7 +18,7 @@
     </div>
     <div class="form__field">
         <%= form.label :position, class: "form__label" %>
-        <%= form.number_field :position, class: "form__input", value: 1 %>
+        <%= form.number_field :position, class: "form__input form__input--number" %>
     </div>
     <div class="form__field form__field--row">
         <%= form.check_box :locked, class: "form__checkbox" %>

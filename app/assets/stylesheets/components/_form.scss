@@ -53,6 +53,10 @@
             cursor: pointer;
         }
 
+        &--number {
+            width: 70px;
+        }
+
         .field_with_errors & {
             border: 1px solid $m2;
         }

@@ -1,10 +1,11 @@
 class ForumsController < ApplicationController
+    before_action :set_forum, only: [:show, :edit, :update, :destroy]
+    before_action :find_channels, only: [:new, :edit]
+
     def show
-        @forum = Forum.find(params[:id])
     end
 
     def new
-        @channel_options = Channel.all.map { |channel| [channel.name, channel.id] }
         @forum = Forum.new
     end
 
@@ -18,9 +19,33 @@ class ForumsController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @forum.update(forum_params)
+            redirect_to '/forums'
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @forum.destroy
+        redirect_to '/forums'
+    end
+
     private
 
     def forum_params
-        params.require(:forum).permit(:title, :description, :channel_id, :order, :locked)
+        params.require(:forum).permit(:title, :description, :channel_id, :position, :locked)
+    end
+
+    def set_forum
+        @forum = Forum.find(params[:id])
+    end
+
+    def find_channels
+        @channel_options = Channel.all.map { |channel| [channel.name, channel.id] }
     end
 end

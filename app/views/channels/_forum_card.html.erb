@@ -1,9 +1,18 @@
-<%= link_to forum_path(forum), class: "forum-card" do %>
-    <header>
-        <h4><%= forum.title %></h4>
-    </header>
-    <div class="forum-card__content">
-        <p><%= forum.description %></p>
-    </div>
-    <footer></footer>
-<% end %>
+<div class="forum-card">
+    <%= link_to forum_path(forum), class: "forum-card__link" do %>
+        <header class="forum-card__header">
+            <h4><%= forum.title %></h4>
+        </header>
+        <div class="forum-card__content">
+            <p><%= forum.description %></p>
+        </div>
+    <% end %>
+    <footer class="forum-card__footer">
+        <%= link_to edit_forum_path(forum) do %>
+            <span class="fa fa-edit"></span>
+        <% end %>
+        <%= link_to forum_path(forum), method: :delete, data: {confirm: "Are you sure you want to delete the forum #{forum.title}?"} do %>
+            <span class="fa fa-trash"></span>            
+        <% end %>  
+    </footer>
+</div>
