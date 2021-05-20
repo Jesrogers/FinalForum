@@ -11,9 +11,13 @@
         </nav>
         <nav class="nav end">
             <ul class="nav__list">
-                <li class="nav__item"><%= link_to 'Register', new_user_registration_path, class: "nav__link" %></li>
-                <li class="nav__item"><%= link_to 'Login', new_user_session_path, class: "nav__link" %></li>
-                <li class="nav__item"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav__link" %></li>
+                <% if user_signed_in? %>
+                    <li class="nav__item"><%= link_to current_user.username, '#', class: "nav__link" %></li>
+                    <li class="nav__item"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav__link" %></li>
+                <% else %>
+                    <li class="nav__item"><%= link_to 'Register', new_user_registration_path, class: "nav__link" %></li>
+                    <li class="nav__item"><%= link_to 'Login', new_user_session_path, class: "nav__link" %></li>
+                <% end %>
             </ul>
         </nav> 
         <button class="menu-trigger">
