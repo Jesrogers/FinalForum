@@ -1,6 +1,6 @@
 <div class="channel">
     <header class="channel__header">
-        <h3><%= channel.name %></h3>
+        <h3><%= link_to channel.name, channel_path(channel) %></h3>
         <%= link_to edit_channel_path(channel) do %>
             <span class="fa fa-edit"></span>
         <% end %>

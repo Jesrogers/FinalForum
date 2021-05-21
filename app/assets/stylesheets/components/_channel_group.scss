@@ -5,7 +5,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.625rem 1em;
+        padding: 0.425em 1em 0.425em 0.7em;
         border-radius: 6px;
         background-color: $m1;
         color: $color-white;
@@ -16,12 +16,17 @@
             color: $color-white;
             font-size: inherit;
             text-transform: uppercase;
+
+            > a {
+                padding: 0.3em;
+            }
         }
 
         a {
             color: $color-white;
             transition: 0.3s all;
             border-radius: 4px;
+            text-decoration: none;
             
             &:not(:last-child) {
                 margin-right: 1em;

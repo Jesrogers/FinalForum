@@ -1,6 +1,11 @@
 class ChannelsController < ApplicationController
+    before_action :set_channel, only: [:show, :edit, :update, :destroy]
+
     def index
         @channels = Channel.all
+    end
+
+    def show
     end
 
     def new
@@ -18,12 +23,9 @@ class ChannelsController < ApplicationController
     end
 
     def edit
-        @channel = Channel.find(params[:id])
     end
 
     def update
-        @channel = Channel.find(params[:id])
-
         if @channel.update(channel_params)
             redirect_to '/forums'
         else
@@ -32,12 +34,15 @@ class ChannelsController < ApplicationController
     end
 
     def destroy
-         @channel = Channel.find(params[:id])
          @channel.destroy
          redirect_to '/forums'
     end
 
     private 
+
+    def set_channel
+        @channel = Channel.find(params[:id])
+    end
 
     def channel_params
         params.require(:channel).permit(:name, :position)
