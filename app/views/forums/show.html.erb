@@ -1,3 +1,20 @@
 <div class="container">
-    <h1><%= @forum.title %><h1>
+    <h1><%= @forum.title %></h1>
+
+    <div class="forum-thread__container">
+        <div class="forum-thread">
+            <div class="forum-thread__title">Title</div>
+            <div class="forum-thread__author">Author</div>
+            <div class="forum-thread__replies">Replies</div>
+            <div class="forum-thread__latest">Last Updated</div>
+        </div>
+        <% @forum.forum_threads.each do |forum_thread| %>
+            <%= link_to "#", class: "forum-thread" do %>
+                <div class="forum-thread__title"><%= forum_thread.title %></div>
+                <div class="forum-thread__author"><%= forum_thread.author.username %></div>
+                <div class="forum-thread__replies"><%= forum_thread.replies %></div>
+                <div class="forum-thread__latest"><%= time_ago_in_words(forum_thread.updated_at) %></div>
+            <% end %>
+        <% end %>
+    </div>
 </div>
