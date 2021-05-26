@@ -1,0 +1,40 @@
+.forum-post {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__head {
+        width: 100%;
+        padding: 0.5em 1em;
+        background: #5676a2;
+        color: $color-white;
+    }
+
+    &__user {
+        display: flex;
+        flex-direction: column;
+        flex: none;
+    }
+
+    &__content {
+        display: flex;
+        width: 100%;
+        padding: 1.25em 1em;
+    }
+
+    &__author {
+        color: $m3;
+        font-size: 1.125rem;
+        font-weight: 700;
+    }
+
+    &__avatar {
+        width: 7.5rem;
+        height: 7.5rem;
+        margin-bottom: 0.3125rem;
+    }
+
+    &__body {
+        flex-grow: 1;
+        padding-left: 1.25em;
+    }
+}

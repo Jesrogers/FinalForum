@@ -1,14 +1,12 @@
 .row {
     display: flex;
+    flex-wrap: wrap;
 
     .col-1-of-2 {
-        background: lightblue;
         width: 50%;
         height: 12.5rem;
-
-        &:not(:last-child) {
-            margin-right: 1.25rem;
-        }
+        padding: 0 1.25em;
+        background: lightblue;
     }
 
     &.direction-column {

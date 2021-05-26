@@ -1,12 +1,11 @@
 .add-forum {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 11.25rem;
-    padding: 1rem;
-    box-shadow: 0 .4rem 1rem rgba($color-black, .35);  
-    border: 2px dashed #5676a2;
+    grid-column: 1 / -1;
+    padding: 0.3rem;
+    box-shadow: 0 0.2rem 0.8rem rgba($color-black, .20);  
+    border: 1.5px dashed #5676a2;
     border-radius: 6px;
     background: #eee;
     color: #5676a2;
@@ -15,11 +14,11 @@
 
     &:hover, &:focus, &:active {
         transform: scale(0.95);
-        box-shadow: 0 0.2rem 0.8rem rgba($color-black, .15);          
+        box-shadow: 0 0.1rem 0.4rem rgba($color-black, .15);          
     }
 
     h4 {
-        margin-bottom: 0.6em;
+        margin-right: 0.5em;
         font-size: 1.25rem;
     }
     

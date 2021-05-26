@@ -7,6 +7,7 @@
 
 @import "base/base";
 @import "base/layouts";
+@import "base/utility";
 
 @import "banners/header";
 
@@ -15,6 +16,7 @@
 @import "components/channel_group";
 @import "components/form"; 
 @import "components/forum-card";
+@import "components/forum-post";
 @import "components/forum-thread";
 
 @import "views/channels_index";

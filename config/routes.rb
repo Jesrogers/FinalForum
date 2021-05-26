@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :channels, except: [:index]
   resources :forums, except: [:index]
-  resources :forum_threads
+  resources :forum_threads, path: 'threads'
   get '/forums', to: 'channels#index'
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, controllers: { registrations: 'registrations' }
