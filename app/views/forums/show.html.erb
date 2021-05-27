@@ -8,13 +8,6 @@
             <div class="forum-thread__replies">Replies</div>
             <div class="forum-thread__latest">Last Updated</div>
         </div>
-        <% @forum.forum_threads.each do |forum_thread| %>
-            <%= link_to forum_thread_path(forum_thread), class: "forum-thread" do %>
-                <div class="forum-thread__title"><%= forum_thread.title %></div>
-                <div class="forum-thread__author"><%= forum_thread.author.username %></div>
-                <div class="forum-thread__replies"><%= forum_thread.replies %></div>
-                <div class="forum-thread__latest"><%= time_ago_in_words(forum_thread.updated_at) %></div>
-            <% end %>
-        <% end %>
+        <%= render partial: "forum_thread", collection: @forum.forum_threads %>
     </div>
 </div>

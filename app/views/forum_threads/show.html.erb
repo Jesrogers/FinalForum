@@ -1,23 +1,4 @@
 <div class="container">
     <h1><%= @thread.title %></h1>
-    <div class="forum-post__container">
-        <div class="forum-post">
-            <div class="forum-post__head bolded">
-                <%= @thread.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
-            </div>
-            <div class="forum-post__content">
-                <div class="forum-post__user">
-                    <span class="forum-post__author"><%= @thread.author.username %></span>
-                    <img class="forum-post__avatar" src="https://via.placeholder.com/100" />
-                    <div class="forum-post__joined">
-                        <span class="bolded">Joined:</span>
-                        <%= @thread.author.created_at.strftime('%b %Y') %>
-                    </div>
-                </div>
-                <div class="forum-post__body">
-                    <p><%= @thread.body %></p>
-                </div>        
-            </div>
-        </div>    
-    </div>
+    <%= render "forum_post", thread: @thread %>
 </div>

@@ -18,7 +18,7 @@
     }
 
     &__header {
-        background: #5676a2;
+        background: $m4;
 
         h4 {
             padding: .6em 1em;
@@ -35,7 +35,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        background: #5676a2;
+        background: $m4;
         font-size: 1.25rem;
 
         a {

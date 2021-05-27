@@ -1,11 +1,16 @@
 .forum-post {
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 40px;
+
+    &:last-child {
+        border-bottom: 1px solid rgba($color-black, .3);
+    }
 
     &__head {
         width: 100%;
         padding: 0.5em 1em;
-        background: #5676a2;
+        background: $m4;
         color: $color-white;
     }
 

@@ -5,13 +5,13 @@
     color: inherit;
 
     &:nth-child(2n + 1) {
-        background: #eee;
+        background: $s1;
     }
 
     &:first-child {
         font-weight: 700;
         color: $color-white;
-        background: #5676a2;
+        background: $m4;
         border-radius: 8px 8px 0 0px;
     }
 
