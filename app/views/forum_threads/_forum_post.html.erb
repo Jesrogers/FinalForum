@@ -5,11 +5,13 @@
         </header>
         <div class="forum-post__content">
             <div class="forum-post__user">
-                <span class="forum-post__author"><%= thread.author.username %></span>
                 <img class="forum-post__avatar" src="https://via.placeholder.com/100" />
-                <div class="forum-post__joined">
-                    <span class="bolded">Joined:</span>
-                    <%= thread.author.created_at.strftime('%b %Y') %>
+                <div class="forum-post__meta">
+                    <span class="forum-post__author"><%= thread.author.username %></span>
+                    <div class="forum-post__joined">
+                        <span class="bolded">Joined:</span>
+                        <%= thread.author.created_at.strftime('%b %Y') %>
+                    </div>                
                 </div>
             </div>
             <div class="forum-post__body">

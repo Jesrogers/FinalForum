@@ -16,14 +16,25 @@
 
     &__user {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        padding-bottom: 0.625rem;
         flex: none;
+
+        @include breakpoint(700px) {
+            flex-direction: column;
+            padding-bottom: 0;
+        }
     }
 
     &__content {
         display: flex;
+        flex-direction: column;
         width: 100%;
         padding: 1.25em 1em;
+
+        @include breakpoint(700px) {
+            flex-direction: row;
+        }
     }
 
     &__author {
@@ -33,13 +44,24 @@
     }
 
     &__avatar {
-        width: 7.5rem;
-        height: 7.5rem;
+        width: 6.25rem;
+        height: 6.25rem;
+        padding-right: 0.625rem;
         margin-bottom: 0.3125rem;
+    
+        @include breakpoint(700px) {
+            width: 7.5rem;
+            height: 7.5rem;
+        }
     }
 
     &__body {
         flex-grow: 1;
-        padding-left: 1.25em;
+        padding-left: 0;
+
+
+        @include breakpoint(700px) {
+            padding-left: 1.25em;
+        }
     }
 }

@@ -22,7 +22,7 @@
     .nav {
         display: none;
 
-        @media (min-width: 900px) {
+        @include breakpoint(900px) {
             display: block;
         }
 
@@ -86,7 +86,7 @@
             transition: all .25s;
         }
 
-        @media (min-width: 900px) {
+        @include breakpoint(900px) {
             display: none;
         }
 

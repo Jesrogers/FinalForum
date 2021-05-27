@@ -3,6 +3,7 @@
     padding: 1.25em;
     text-decoration: none;
     color: inherit;
+    transition: .2s all;
 
     &:nth-child(2n + 1) {
         background: $s1;
@@ -17,6 +18,10 @@
 
     &:last-child {
         border-radius: 0 0 8px 8px;
+    }
+
+    &:hover, &:focus, &:active {
+        background: lighten($m4, 35%);
     }
 
     &__container {
