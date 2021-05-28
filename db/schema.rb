@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_175653) do
+ActiveRecord::Schema.define(version: 2021_05_28_155123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2021_05_21_175653) do
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "forum_replies", force: :cascade do |t|
+    t.text "body"
+    t.bigint "forum_thread_id"
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_forum_replies_on_author_id"
+    t.index ["forum_thread_id"], name: "index_forum_replies_on_forum_thread_id"
   end
 
   create_table "forum_threads", force: :cascade do |t|
@@ -59,6 +69,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_175653) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "forum_replies", "forum_threads"
+  add_foreign_key "forum_replies", "users", column: "author_id"
   add_foreign_key "forum_threads", "forums"
   add_foreign_key "forum_threads", "users", column: "author_id"
   add_foreign_key "forums", "channels"
