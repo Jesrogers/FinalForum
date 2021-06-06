@@ -1,4 +1,28 @@
 <div class="container">
     <h1><%= @thread.title %></h1>
     <%= render "forum_post", thread: @thread %>
+    <% @thread.forum_replies.each do |reply| %>
+    <div class="forum-post">
+        <header class="forum-post__head bolded">
+            <%= reply.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
+        </header>
+        <div class="forum-post__content">
+            <div class="forum-post__user">
+                <img class="forum-post__avatar" src="https://via.placeholder.com/100" />
+                <div class="forum-post__meta">
+                    <span class="forum-post__author"><%= reply.author.username %></span>
+                    <div class="forum-post__joined">
+                        <span class="bolded">Joined:</span>
+                        <%= reply.author.created_at.strftime('%b %Y') %>
+                    </div>                
+                </div>
+            </div>
+            <div class="forum-post__body">
+                <p><%= sanitize reply.body %></p>
+            </div>        
+        </div>
+    </div>   
+    <% end %>
+
+    <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
 </div>

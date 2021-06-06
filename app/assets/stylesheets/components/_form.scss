@@ -2,6 +2,10 @@
     max-width: 37.5rem;
     margin: 0 auto;
 
+    &.full {
+        max-width: none;
+    }
+
     &__field {
         display: flex;
         flex-direction: column;
