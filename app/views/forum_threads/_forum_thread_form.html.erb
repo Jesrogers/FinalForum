@@ -1,0 +1,15 @@
+<%= form_with model: forum_thread, class: "form" do |form| %>
+    <div class="form__title">
+        <h1><%= form_title %></h1>
+    </div>
+    <div class="form__field">
+        <%= form.label :title, class: "form__label" %>
+        <%= form.text_field :title, required: true, class: "form__input" %>
+    </div>
+    <div class="form__field">
+        <%= form.label :body, class: "form__label" %>
+        <%= form.cktext_area :body, class: "form__input" %>
+    </div>
+    <%= form.hidden_field :forum_id, value: params[:forum_id] %>
+    <%= form.submit "Create", class: "form__submit" %>
+<% end %>

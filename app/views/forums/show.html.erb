@@ -1,13 +1,18 @@
-<div class="container">
-    <h1><%= @forum.title %></h1>
-
-    <div class="forum-thread__container">
-        <div class="forum-thread">
-            <div class="forum-thread__title">Title</div>
-            <div class="forum-thread__author">Author</div>
-            <div class="forum-thread__replies">Replies</div>
-            <div class="forum-thread__latest">Last Updated</div>
+<section class="forums-section">
+    <div class="container">
+        <h1><%= @forum.title %></h1>
+        <% if user_signed_in? %>
+            <div class="create-thread"><%= link_to "New Thread", new_forum_thread_path(forum_id: @forum.id), class: "btn" %></div>
+        <% end %>
+        <div class="forum-thread__container">
+            <div class="forum-thread">
+                <div class="forum-thread__title">Title</div>
+                <div class="forum-thread__author">Author</div>
+                <div class="forum-thread__replies">Replies</div>
+                <div class="forum-thread__latest">Last Updated</div>
+            </div>
+            <%= render partial: "forum_thread", collection: @forum.forum_threads %>
         </div>
-        <%= render partial: "forum_thread", collection: @forum.forum_threads %>
     </div>
-</div>
+</section>
+
