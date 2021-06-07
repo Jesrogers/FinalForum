@@ -4,5 +4,7 @@
         <%= render "forum_post", forum_post: @forum_thread %>
         <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies %>
     </div>
-    <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
+    <% if user_signed_in? %>
+        <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
+    <% end %>
 </div>

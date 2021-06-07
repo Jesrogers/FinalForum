@@ -7,12 +7,15 @@
             <p><%= forum.description %></p>
         </div>
     <% end %>
-    <footer class="forum-card__footer">
-        <%= link_to edit_forum_path(forum) do %>
-            <span class="fa fa-edit"></span>
-        <% end %>
-        <%= link_to forum_path(forum), method: :delete, data: {confirm: "Are you sure you want to delete the forum #{forum.title}?"} do %>
-            <span class="fa fa-trash"></span>            
-        <% end %>  
-    </footer>
+    <% if user_signed_in? %>
+        <footer class="forum-card__footer">
+
+            <%= link_to edit_forum_path(forum) do %>
+                <span class="fa fa-edit"></span>
+            <% end %>
+            <%= link_to forum_path(forum), method: :delete, data: {confirm: "Are you sure you want to delete the forum #{forum.title}?"} do %>
+                <span class="fa fa-trash"></span>            
+            <% end %>  
+        </footer>
+    <% end %>
 </div>

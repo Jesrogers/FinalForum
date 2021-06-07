@@ -1,9 +1,9 @@
-
-
 <section class="channels-section">
     <div class="container">
         <h1>Forums</h1>
-        <div class="create-channel"><%= link_to "Create Channel", new_channel_path, class: "btn" %></div>
+        <% if user_signed_in? %>
+            <div class="create-channel"><%= link_to "Create Channel", new_channel_path, class: "btn" %></div>
+        <% end %>
         <div class="row direction-column">
             <%= render partial: "channel", collection: @channels.ordered_by_position %>
         </div>    

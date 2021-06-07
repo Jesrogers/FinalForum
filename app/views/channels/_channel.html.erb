@@ -1,17 +1,22 @@
 <div class="channel">
     <header class="channel__header">
         <h3><%= link_to channel.name, channel_path(channel) %></h3>
-        <%= link_to edit_channel_path(channel) do %>
-            <span class="fa fa-edit"></span>
-        <% end %>
-        <%= link_to channel_path(channel), method: :delete, data: {confirm: "Are you sure you want to delete the channel #{channel.name} and all associated forums?"} do %>
-            <span class="fa fa-trash"></span>            
+        <% if user_signed_in? %>
+            <%= link_to edit_channel_path(channel) do %>
+                <span class="fa fa-edit"></span>
+            <% end %>
+            <%= link_to channel_path(channel), method: :delete, data: {confirm: "Are you sure you want to delete the channel #{channel.name} and all associated forums?"} do %>
+                <span class="fa fa-trash"></span>            
+            <% end %>                
         <% end %>
     </header>
     <div class="channel__content">
         <% channel.forums.ordered_by_position.each do |forum| %>
             <%= render "forum_card", forum: forum %>
         <% end %>
-        <%= render "add_forum_link", channel: channel %>
+        
+        <% if user_signed_in? %>
+            <%= render "add_forum_link", channel: channel %>
+        <% end %>
     </div>
 </div>
