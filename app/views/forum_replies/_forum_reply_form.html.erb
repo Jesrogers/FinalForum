@@ -1,6 +1,6 @@
-<%= form_with model: [@thread, @thread.forum_replies.build], class: "form full" do |form| %>
+<%= form_with model: [@forum_thread, @forum_thread.forum_replies.build], class: "form full" do |form| %>
     <div class="form__title">
-        <h1><%= form_title %></h1>
+        <h2><%= form_title %></h2>
     </div>
     <div class="form__field">
         <%= form.cktext_area :body, class: "form__input" %>

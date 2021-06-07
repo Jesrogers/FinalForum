@@ -1,22 +1,20 @@
-<div class="forum-post__container">
-    <div class="forum-post">
-        <header class="forum-post__head bolded">
-            <%= thread.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
-        </header>
-        <div class="forum-post__content">
-            <div class="forum-post__user">
-                <img class="forum-post__avatar" src="https://via.placeholder.com/100" />
-                <div class="forum-post__meta">
-                    <span class="forum-post__author"><%= thread.author.username %></span>
-                    <div class="forum-post__joined">
-                        <span class="bolded">Joined:</span>
-                        <%= thread.author.created_at.strftime('%b %Y') %>
-                    </div>                
-                </div>
+<div class="forum-post">
+    <header class="forum-post__head bolded">
+        <%= forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
+    </header>
+    <div class="forum-post__content">
+        <div class="forum-post__user">
+            <img class="forum-post__avatar" src="https://via.placeholder.com/100" />
+            <div class="forum-post__meta">
+                <span class="forum-post__author"><%= forum_post.author.username %></span>
+                <div class="forum-post__joined">
+                    <span class="bolded">Joined:</span>
+                    <%= forum_post.author.created_at.strftime('%b %Y') %>
+                </div>                
             </div>
-            <div class="forum-post__body">
-                <p><%= sanitize thread.body %></p>
-            </div>        
         </div>
-    </div>    
-</div>
+        <div class="forum-post__body">
+            <p><%= sanitize forum_post.body %></p>
+        </div>        
+    </div>
+</div>    
