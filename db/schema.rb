@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_28_155123) do
+ActiveRecord::Schema.define(version: 2021_06_07_202145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2021_05_28_155123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "author_id"
-    t.integer "replies"
     t.datetime "last_post"
     t.bigint "forum_id"
     t.index ["author_id"], name: "index_forum_threads_on_author_id"
