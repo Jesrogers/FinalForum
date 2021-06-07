@@ -1,6 +1,7 @@
 class ForumsController < ApplicationController
     before_action :set_forum, only: [:show, :edit, :update, :destroy]
     before_action :find_channels, only: [:new, :edit]
+    before_action :authenticate_user!, except: [:show]
 
     def show
     end
