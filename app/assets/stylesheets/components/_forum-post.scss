@@ -8,10 +8,39 @@
     }
 
     &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
         width: 100%;
         padding: 0.5em 1em;
         background: $m4;
         color: $color-white;
+    }
+
+    &__options {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        font-size: 1.25rem;
+
+        a {
+            color: $color-white;
+            transition: .3s all;
+            height: 100%;
+
+            &:hover {
+                background: $m2;
+            }
+        }
+
+        span {
+            padding: .5em;
+        }
     }
 
     &__user {

@@ -13,9 +13,9 @@ User.create!(username: "Coolguyjohn", email: "testyy@gmail.com", password: "test
 Channel.create(name: 'Employees', position: 1)
 Channel.create(name: 'Departments', position: 1)
 
-Forum.create(channel_id: 1, title: "General Discussion", description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula, velit porttitor accumsan tincidunt, arcu mi viverra augue, ac dignissim lacus lorem vitae orci', position: 1, locked: false)
-Forum.create(channel_id: 1, title: "Marketplace", description: 'Suspendisse sollicitudin imperdiet velit, in eleifend sapien. Donec tempor faucibus magna sed aliquam. Mauris efficitur magna at pulvinar malesuada. Ut a ex vel dui vestibulum dignissim', position: 1, locked: false)
-Forum.create(channel_id: 1, title: "Finalsite Fitness", description: 'Donec mi magna, consequat vel lectus vel, aliquam venenatis eros. Ut ut venenatis dolor. Duis vel magna vel risus gravida ullamcorper non ut est', position: 1, locked: false)
+Forum.create(channel_id: 1, title: "General Discussion", description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula', position: 1, locked: false)
+Forum.create(channel_id: 1, title: "Marketplace", description: 'Suspendisse sollicitudin imperdiet velit, in eleifend sapien', position: 1, locked: false)
+Forum.create(channel_id: 1, title: "Finalsite Fitness", description: 'Donec mi magna, consequat vel lectus vel, aliquam venenatis eros. Ut ut venenatis dolor', position: 1, locked: false)
 Forum.create(channel_id: 2, title: "Support", description: 'Lectus magna fringilla urna porttitor rhoncus dolor purus non enim. Diam in arcu cursus euismod', position: 1, locked: false)
 Forum.create(channel_id: 2, title: "Deployment", description: 'Ultricies mi quis hendrerit dolor. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis', position: 1, locked: false)
 
