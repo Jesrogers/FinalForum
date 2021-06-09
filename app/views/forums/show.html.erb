@@ -1,8 +1,10 @@
-<section class="forums-section">
+<section class="forum-section">
     <div class="container">
         <h1><%= @forum.title %></h1>
         <% if user_signed_in? %>
-            <div class="create-thread"><%= link_to "New Thread", new_forum_thread_path(forum_id: @forum.id), class: "btn" %></div>
+            <div class="thread-options">
+                <%= link_to "New Thread", new_forum_thread_path(forum_id: @forum.id), class: "btn" %>
+            </div>
         <% end %>
         <div class="forum-thread__container">
             <div class="forum-thread header">

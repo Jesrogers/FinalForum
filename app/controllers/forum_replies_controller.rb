@@ -1,4 +1,7 @@
 class ForumRepliesController < ApplicationController
+    before_action :authenticate_user!
+    before_action :set_reply, only: [:edit, :update, :destroy]
+
     def create
         @thread = ForumThread.find(params[:forum_thread_id])
         @forum_reply = @thread.forum_replies.create(forum_reply_params)
@@ -11,7 +14,22 @@ class ForumRepliesController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @forum_reply.update(forum_reply_params)
+            redirect_to forum_thread_path(@forum_reply.forum_thread)
+        else
+            render :edit
+        end
+    end
+
     private 
+    
+    def set_reply
+        @forum_reply = ForumReply.find(params[:id])
+    end
     
     def forum_reply_params
         params.require(:forum_reply).permit(:body)

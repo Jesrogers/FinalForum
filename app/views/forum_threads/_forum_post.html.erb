@@ -1,6 +1,11 @@
 <div class="forum-post">
     <header class="forum-post__head bolded">
         <%= forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
+        <% if reply_author?(forum_post) %>
+            <% if !forum_post.has_attribute?(:title) %>
+                <%= link_to "Edit", edit_forum_reply_path(forum_post) %>
+            <% end %>
+        <% end %>
     </header>
     <div class="forum-post__content">
         <div class="forum-post__user">

@@ -1,5 +1,11 @@
-<div class="container">
+<section class="thread-section">
+    <div class="container">
     <h1><%= @forum_thread.title %></h1>
+    <% if thread_author?(@forum_thread) %>
+        <div class="create-thread">
+            <%= link_to "Edit Thread", edit_forum_thread_path(@forum_thread, forum_id: @forum_thread.forum.id), class: "btn" %>    
+        </div>
+    <% end %>
     <div class="forum-post__container">
         <%= render "forum_post", forum_post: @forum_thread %>
         <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies %>
@@ -8,3 +14,4 @@
         <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
     <% end %>
 </div>
+</section>

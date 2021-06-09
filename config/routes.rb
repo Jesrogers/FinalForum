@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :channels, except: [:index]
   resources :forums, except: [:index]
   resources :forum_threads, path: 'threads' do
-    resources :forum_replies
+    resources :forum_replies, shallow: true, path: 'replies'
   end
 
   
