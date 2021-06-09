@@ -34,7 +34,7 @@
 
     &__title {
         flex: 1 1 70%;
-        padding-right: 20px;
+        padding-right: 1.25em;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
@@ -45,20 +45,19 @@
     }
 
     &__author {
-        flex: 1 0 50px;
+        flex: 1 0 6.25rem;
         text-align: right;
         overflow: hidden;
         text-overflow: ellipsis;
 
         @include breakpoint(600px) {
-            flex: 1 0 100px;
             text-align: left;
         }
     }
 
     &__replies {
         display: none;
-        flex: 1 0 50px;
+        flex: 1 0 3.125rem;
         text-align: center;
 
         @include breakpoint(600px) {
@@ -66,9 +65,9 @@
         }
     }
 
-    &__latest {
+    &__activity {
         display: none;
-        flex: 1 0 125px;
+        flex: 1 0 6.25rem;
         text-align: right;
 
         @include breakpoint(600px) {

@@ -9,9 +9,9 @@
                 <div class="forum-thread__title">Title</div>
                 <div class="forum-thread__author">Author</div>
                 <div class="forum-thread__replies">Replies</div>
-                <div class="forum-thread__latest">Last Updated</div>
+                <div class="forum-thread__activity">Activity</div>
             </div>
-            <%= render partial: "forum_thread", collection: @forum.forum_threads %>
+            <%= render partial: "forum_thread", collection: @forum.forum_threads.ordered_by_updated %>
         </div>
     </div>
 </section>

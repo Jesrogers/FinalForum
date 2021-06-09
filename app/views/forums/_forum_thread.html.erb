@@ -2,5 +2,5 @@
     <div class="forum-thread__title"><%= forum_thread.title %></div>
     <div class="forum-thread__author"><%= forum_thread.author.username %></div>
     <div class="forum-thread__replies"><%= forum_thread.forum_replies.count %></div>
-    <div class="forum-thread__latest"><%= time_ago_in_words(forum_thread.updated_at) %></div>
+    <div class="forum-thread__activity"><%= time_ago_in_words(forum_thread.updated_at) %></div>
 <% end %>
