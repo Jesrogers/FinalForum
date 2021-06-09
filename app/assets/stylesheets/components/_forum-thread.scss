@@ -33,21 +33,47 @@
 
 
     &__title {
-        width: 70%;
+        flex: 1 1 70%;
+        padding-right: 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        @include breakpoint(600px) {
+            padding-right: 40px;
+        }
     }
 
     &__author {
-        width: 10%;
-        text-align: left;
+        flex: 1 0 50px;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include breakpoint(600px) {
+            flex: 1 0 100px;
+            text-align: left;
+        }
     }
 
     &__replies {
-        width: 5%;
+        display: none;
+        flex: 1 0 50px;
         text-align: center;
+
+        @include breakpoint(600px) {
+            display: block;
+        }
     }
 
     &__latest {
-        width: 15%;
+        display: none;
+        flex: 1 0 125px;
         text-align: right;
+
+        @include breakpoint(600px) {
+            display: block;
+        }
+
     }
 }
