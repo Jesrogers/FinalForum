@@ -1,21 +1,24 @@
 .btn {
-
-    &:link,
-    &:visited {
-        display: inline-block;
-        margin-bottom: 1.25rem;
-        padding: 0.75em 1.25em;
-        border-radius: 4px;
-        background: $m3;
-        color: $color-white;
-        font-weight: bold;
-        text-decoration: none;
-        transition: all .15s;
-    }
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    padding: 0.75em 1.25em;
+    border-radius: 4px;
+    background: $m3;
+    color: $color-white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all .15s;
 
     &:hover, &:focus, &:active {
         transform: scale(.95);
         background: darken($color: $m3, $amount: 5%);
     }
-    
+
+    &--danger {
+        background: $m2;
+
+        &:hover, &:focus, &:active {
+            background: darken($color: $m2, $amount: 5%);
+        }
+    }
 }

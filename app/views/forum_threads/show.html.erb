@@ -3,7 +3,8 @@
     <h1><%= @forum_thread.title %></h1>
     <% if thread_author?(@forum_thread) %>
         <div class="create-thread">
-            <%= link_to "Edit Thread", edit_forum_thread_path(@forum_thread, forum_id: @forum_thread.forum.id), class: "btn" %>    
+            <%= link_to "Edit", edit_forum_thread_path(@forum_thread, forum_id: @forum_thread.forum.id), class: "btn" %>    
+            <%= link_to "Delete", forum_thread_path(@forum_thread), method: :delete, data: {confirm: "Are you sure you want to delete the thread #{@forum_thread.title}"}, class: "btn btn--danger" %>
         </div>
     <% end %>
     <div class="forum-post__container">

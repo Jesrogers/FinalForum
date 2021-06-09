@@ -4,6 +4,7 @@
         <% if reply_author?(forum_post) %>
             <% if !forum_post.has_attribute?(:title) %>
                 <%= link_to "Edit", edit_forum_reply_path(forum_post) %>
+                <%= link_to "Delete", forum_reply_path(forum_post), method: :delete, data: {confirm: "Are you sure you want to delete this reply?"} %>
             <% end %>
         <% end %>
     </header>

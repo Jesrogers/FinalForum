@@ -25,6 +25,11 @@ class ForumRepliesController < ApplicationController
         end
     end
 
+    def destroy
+        @forum_reply.destroy
+        redirect_to forum_thread_path(@forum_reply.forum_thread)
+    end
+
     private 
     
     def set_reply
