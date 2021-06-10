@@ -1,4 +1,5 @@
 class ForumThreadsController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_forum_thread, only: [:show, :edit, :update, :destroy]
 
     def new
@@ -42,6 +43,6 @@ class ForumThreadsController < ApplicationController
     end
 
     def forum_thread_params
-        params.require(:forum_thread).permit(:title, :body, :forum_id)
+        params.require(:forum_thread).permit(:title, :body)
     end
 end

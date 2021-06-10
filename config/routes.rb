@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   resources :channels, except: [:index]
   resources :forums, except: [:index]
-  resources :forum_threads, path: 'threads' do
-    resources :forum_replies, shallow: true, path: 'replies'
+  resources :forum_threads, path: 'threads', except: [:index] do
+    resources :forum_replies, shallow: true, path: 'replies', except: [:index, :show, :new]
   end
 
   
