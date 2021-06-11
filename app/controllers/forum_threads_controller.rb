@@ -2,6 +2,7 @@ class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     before_action :set_forum, only: [:new, :create]
     before_action :set_forum_thread, only: [:show, :edit, :update, :destroy]
+    before_action :thread_authorize_check, only: [:edit, :update, :destroy]
 
     def new
         @forum_thread = ForumThread.new

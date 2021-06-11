@@ -1,10 +1,11 @@
 class ForumRepliesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_reply, only: [:edit, :update, :destroy]
+    before_action :reply_authorize_check
 
     def create
-        @thread = ForumThread.find(params[:forum_thread_id])
-        @forum_reply = @thread.forum_replies.create(forum_reply_params)
+        @forum_thread = ForumThread.find(params[:forum_thread_id])
+        @forum_reply = @forum_thread.forum_replies.create(forum_reply_params)
         @forum_reply.author_id = current_user.id
 
         if @forum_reply.save
