@@ -1,0 +1,32 @@
+.notice, .alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    background: $m3;
+    color: $color-white;
+    transition: max-height .5s, padding .5s, font-size .5s;
+    text-align: center;
+    z-index: 1;
+    overflow: hidden;
+
+    animation: moveInLeft .6s ease-out;
+
+    &:not(:empty) {
+        padding: 1rem 2rem;
+    }
+
+    &.inactive {
+        max-height: 0;
+        padding: 0;
+        font-size: 0;
+    }
+}
+
+.alert {
+    background: $m2;
+}
