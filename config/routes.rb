@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :channels, except: [:index]
-  resources :forums, except: [:index]
-  resources :forum_threads, path: 'threads', except: [:index] do
+  resources :forums, except: [:index] do
+    resources :forum_threads, path: 'threads', only: [:new, :create]
+  end
+
+  resources :forum_threads, path: 'threads', except: [:index, :new, :create] do
     resources :forum_replies, shallow: true, path: 'replies', except: [:index, :show, :new]
   end
 

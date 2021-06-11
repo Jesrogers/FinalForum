@@ -1,5 +1,6 @@
 class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :set_forum, only: [:new, :create]
     before_action :set_forum_thread, only: [:show, :edit, :update, :destroy]
 
     def new
@@ -7,7 +8,7 @@ class ForumThreadsController < ApplicationController
     end
 
     def create
-        @forum_thread = ForumThread.new(forum_thread_params)
+        @forum_thread = @forum.forum_threads.build(forum_thread_params)
         @forum_thread.author_id = current_user.id
 
         if @forum_thread.save
@@ -37,6 +38,10 @@ class ForumThreadsController < ApplicationController
     end
 
     private
+
+    def set_forum
+        @forum = Forum.find(parama[:forum_id])
+    end
 
     def set_forum_thread
         @forum_thread = ForumThread.find(params[:id])
