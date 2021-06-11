@@ -13,7 +13,7 @@ class ForumThreadsController < ApplicationController
         @forum_thread.author_id = current_user.id
 
         if @forum_thread.save
-            redirect_to forum_thread_path(@forum_thread)
+            redirect_to forum_thread_path(@forum_thread), notice: "Thread created."
         else
             render :new
         end
@@ -27,7 +27,7 @@ class ForumThreadsController < ApplicationController
 
     def update
         if @forum_thread.update(forum_thread_params)
-            redirect_to forum_thread_path(@forum_thread)
+            redirect_to forum_thread_path(@forum_thread), notice: "Thread updated."
         else
             render :edit
         end
@@ -35,13 +35,13 @@ class ForumThreadsController < ApplicationController
 
     def destroy
         @forum_thread.destroy
-        redirect_to forum_path(@forum_thread.forum)
+        redirect_to forum_path(@forum_thread.forum), notice: "Thread deleted."
     end
 
     private
 
     def set_forum
-        @forum = Forum.find(parama[:forum_id])
+        @forum = Forum.find(params[:forum_id])
     end
 
     def set_forum_thread

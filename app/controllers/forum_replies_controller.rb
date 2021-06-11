@@ -11,7 +11,7 @@ class ForumRepliesController < ApplicationController
         if @forum_reply.save
             redirect_to forum_thread_path(@thread)
         else
-            redirect_to forum_thread_path(@forum_thread)
+            redirect_to forum_thread_path(@forum_thread), notice: "Reply successful."
         end
     end
 
@@ -20,7 +20,7 @@ class ForumRepliesController < ApplicationController
 
     def update
         if @forum_reply.update(forum_reply_params)
-            redirect_to forum_thread_path(@forum_reply.forum_thread)
+            redirect_to forum_thread_path(@forum_reply.forum_thread), notice: "Reply updated."
         else
             render :edit
         end
@@ -28,7 +28,7 @@ class ForumRepliesController < ApplicationController
 
     def destroy
         @forum_reply.destroy
-        redirect_to forum_thread_path(@forum_reply.forum_thread)
+        redirect_to forum_thread_path(@forum_reply.forum_thread), notice: "Reply deleted."
     end
 
     private 
