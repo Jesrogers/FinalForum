@@ -7,7 +7,7 @@
             <p><%= forum.description %></p>
         </div>
     <% end %>
-    <% if user_signed_in? %>
+    <% if user_has_role?(:admin) %>
         <footer class="forum-card__footer">
             <%= link_to edit_forum_path(forum) do %>
                 <span class="fa fa-edit"></span>

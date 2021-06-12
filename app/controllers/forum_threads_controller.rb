@@ -12,7 +12,7 @@ class ForumThreadsController < ApplicationController
         @forum_thread.author_id = current_user.id
 
         if @forum_thread.save
-            redirect_to forum_thread_path(@forum_thread), notice: "Thread created."
+            redirect_to forum_thread_path(@forum_thread)
         else
             render :new
         end
@@ -27,7 +27,7 @@ class ForumThreadsController < ApplicationController
 
     def update
         if @forum_thread.update(forum_thread_params)
-            redirect_to forum_thread_path(@forum_thread), notice: "Thread updated."
+            redirect_to forum_thread_path(@forum_thread)
         else
             render :edit
         end

@@ -15,7 +15,7 @@
             <%= render "forum_card", forum: forum %>
         <% end %>
         
-        <% if user_signed_in? %>
+        <% if user_has_role?(:admin) %>
             <%= render "add_forum_link", channel: channel %>
         <% end %>
     </div>

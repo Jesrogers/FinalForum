@@ -1,18 +1,16 @@
 class ForumsController < ApplicationController
-    before_action :set_forum, only: [:show, :edit, :update, :destroy]
-    before_action :find_channels, only: [:new, :edit]
     before_action :authenticate_user!, except: [:show]
+    before_action :find_channels, only: [:new, :edit]
+    load_and_authorize_resource except: [:show]
 
     def show
+        @forum = Forum.find(params[:id])
     end
 
     def new
-        @forum = Forum.new
     end
 
     def create
-        @forum = Forum.new(forum_params)
-
         if @forum.save
             redirect_to '/forums'
         else
@@ -40,10 +38,6 @@ class ForumsController < ApplicationController
 
     def forum_params
         params.require(:forum).permit(:title, :description, :channel_id, :position, :locked)
-    end
-
-    def set_forum
-        @forum = Forum.find(params[:id])
     end
 
     def find_channels

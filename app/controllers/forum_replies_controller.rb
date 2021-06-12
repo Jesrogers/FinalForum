@@ -10,7 +10,7 @@ class ForumRepliesController < ApplicationController
         if @forum_reply.save
             redirect_to forum_thread_path(@forum_thread)
         else
-            redirect_to forum_thread_path(@forum_thread), notice: "Reply successful."
+            redirect_to forum_thread_path(@forum_thread)
         end
     end
 
@@ -19,7 +19,7 @@ class ForumRepliesController < ApplicationController
 
     def update
         if @forum_reply.update(forum_reply_params)
-            redirect_to forum_thread_path(@forum_reply.forum_thread), notice: "Reply updated."
+            redirect_to forum_thread_path(@forum_reply.forum_thread)
         else
             render :edit
         end
