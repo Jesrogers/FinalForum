@@ -1,7 +1,7 @@
 <section class="channels-section">
     <div class="container">
         <h1>Forums</h1>
-        <% if user_signed_in? %>
+        <% if user_has_role?(:admin) %>
             <div class="create-channel"><%= link_to "Create Channel", new_channel_path, class: "btn" %></div>
         <% end %>
         <div class="row direction-column">

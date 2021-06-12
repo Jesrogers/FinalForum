@@ -1,7 +1,7 @@
 <div class="channel">
     <header class="channel__header">
         <h3><%= link_to channel.name, channel_path(channel) %></h3>
-        <% if user_signed_in? %>
+        <% if user_has_role?(:admin) %>
             <%= link_to edit_channel_path(channel) do %>
                 <span class="fa fa-edit"></span>
             <% end %>

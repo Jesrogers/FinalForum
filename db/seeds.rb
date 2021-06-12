@@ -12,7 +12,6 @@ User.create!(username: "Coolguyjohn", email: "testyy@gmail.com", password: "test
 
 Bill.add_role(:admin)
 
-
 Channel.create(name: 'Employees', position: 1)
 Channel.create(name: 'Departments', position: 1)
 
