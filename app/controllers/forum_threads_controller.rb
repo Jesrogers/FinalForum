@@ -34,7 +34,6 @@ class ForumThreadsController < ApplicationController
     end
 
     def destroy
-        @forum_thread.destroy
         redirect_to forum_path(@forum_thread.forum), notice: "Thread deleted."
     end
 

@@ -1,7 +1,7 @@
 <div class="forum-post">
     <header class="forum-post__head bolded">
         <%= forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
-        <% if reply_author?(forum_post) %>
+        <% if reply_author?(forum_post) || user_has_role?(:admin) %>
             <% if !forum_post.has_attribute?(:title) %>
                 <div class="forum-post__options">
                     <%= link_to edit_forum_reply_path(forum_post) do %>
@@ -18,7 +18,10 @@
         <div class="forum-post__user">
             <img class="forum-post__avatar" src="https://via.placeholder.com/100" />
             <div class="forum-post__meta">
-                <span class="forum-post__author"><%= forum_post.author.username %></span>
+                <span class="forum-post__author" <%= author_has_role?(forum_post.author, :admin) ? "style=color:#d33a56" : '' %>><%= forum_post.author.username %></span>
+                <% if author_has_role?(forum_post.author, :admin) %>
+                    <div class="forum-post__title">Administrator</div>
+                <% end %>
                 <div class="forum-post__joined">
                     <span class="bolded">Joined:</span>
                     <%= forum_post.author.created_at.strftime('%b %Y') %>

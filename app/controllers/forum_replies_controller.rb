@@ -1,11 +1,10 @@
 class ForumRepliesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_reply, only: [:edit, :update, :destroy]
-    before_action :reply_authorize_check
+    load_and_authorize_resource only: [:edit, :update, :destroy]
 
     def create
         @forum_thread = ForumThread.find(params[:forum_thread_id])
-        @forum_reply = @forum_thread.forum_replies.create(forum_reply_params)
+        @forum_reply = @forum_thread.forum_replies.build(forum_reply_params)
         @forum_reply.author_id = current_user.id
 
         if @forum_reply.save
@@ -27,15 +26,10 @@ class ForumRepliesController < ApplicationController
     end
 
     def destroy
-        @forum_reply.destroy
         redirect_to forum_thread_path(@forum_reply.forum_thread), notice: "Reply deleted."
     end
 
     private 
-    
-    def set_reply
-        @forum_reply = ForumReply.find(params[:id])
-    end
     
     def forum_reply_params
         params.require(:forum_reply).permit(:body)

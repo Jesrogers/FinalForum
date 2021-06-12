@@ -11,6 +11,7 @@ class Ability
     else
       can :read, :all
       can :modify, ForumThread, author_id: user.id
+      can :modify, ForumReply, author_id: user.id
     end
   end
 end
