@@ -9,7 +9,7 @@ class ForumRepliesController < ApplicationController
         @forum_reply.author_id = current_user.id
 
         if @forum_reply.save
-            redirect_to forum_thread_path(@thread)
+            redirect_to forum_thread_path(@forum_thread)
         else
             redirect_to forum_thread_path(@forum_thread), notice: "Reply successful."
         end

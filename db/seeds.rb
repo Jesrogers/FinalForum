@@ -6,9 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(username: "Billinator", email: "test@gmail.com", password: "testtest", password_confirmation: "testtest")
+Bill = User.create!(username: "Billinator", email: "test@gmail.com", password: "testtest", password_confirmation: "testtest")
 User.create!(username: "Freddy", email: "testy@gmail.com", password: "testtest", password_confirmation: "testtest")
 User.create!(username: "Coolguyjohn", email: "testyy@gmail.com", password: "testtest", password_confirmation: "testtest")
+
+Bill.add_role(:admin)
+
 
 Channel.create(name: 'Employees', position: 1)
 Channel.create(name: 'Departments', position: 1)

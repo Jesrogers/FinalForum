@@ -1,8 +1,7 @@
 class ForumThreadsController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:show]
     before_action :set_forum, only: [:new, :create]
-    before_action :set_forum_thread, only: [:show, :edit, :update, :destroy]
-    before_action :thread_authorize_check, only: [:edit, :update, :destroy]
+    load_and_authorize_resource only: [:edit, :update, :destroy]
 
     def new
         @forum_thread = ForumThread.new
@@ -20,6 +19,7 @@ class ForumThreadsController < ApplicationController
     end
 
     def show
+        @forum_thread = ForumThread.find(params[:id])
     end
 
     def edit
@@ -42,10 +42,6 @@ class ForumThreadsController < ApplicationController
 
     def set_forum
         @forum = Forum.find(params[:forum_id])
-    end
-
-    def set_forum_thread
-        @forum_thread = ForumThread.find(params[:id])
     end
 
     def forum_thread_params
