@@ -1,17 +1,8 @@
 class ApplicationController < ActionController::Base
-    helper_method [:thread_author_redirect, :reply_authorize_check]
 
-    private 
+  rescue_from CanCan::AccessDenied do |exception|
+    render file: "#{Rails.root}/public/404.html", status: 404, layout: false
+  end
 
-    def thread_authorize_check
-        unless current_user == @forum_thread.author
-            redirect_to '/forums', flash: {alert: "You are not authorized to modify this thread."}
-        end
-    end
 
-    def reply_authorize_check
-        unless current_user == @forum_reply.author
-            redirect_to '/forums', flash: {alert: "You are not authorized to modify this reply."}
-        end
-    end
 end
