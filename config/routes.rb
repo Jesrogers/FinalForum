@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :channels, except: [:index]
+  
   resources :forums, except: [:index] do
     resources :forum_threads, path: 'threads', only: [:new, :create]
   end
@@ -13,7 +14,6 @@ Rails.application.routes.draw do
     resources :forum_replies, shallow: true, path: 'replies', except: [:index, :show, :new]
   end
 
-  
   get '/forums', to: 'channels#index'
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, controllers: { registrations: 'registrations' }

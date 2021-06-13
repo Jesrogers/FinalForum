@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ForumApp</title>
+    <% if content_for?(:title) %>
+        <%= yield :title %>
+    <% else %>
+        <title>ForumApp</title> 
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
