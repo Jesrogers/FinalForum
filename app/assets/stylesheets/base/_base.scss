@@ -23,12 +23,12 @@ body {
 
 h1 {
     font-size: 3.1875rem;
-    margin: 1.25rem 0;
+    margin: 0 0 1.25rem 0;
 }
 
 h2 {
     font-size: 2rem;
-    margin: 1.25rem 0;
+    margin: 0 0 1.25rem 0;
 }
 
 h3 {
@@ -42,9 +42,10 @@ ul, ol {
 
 a {
     color: $m4;
+    transition: all .3s;
     text-decoration: none;
-}
 
-.intro {
-    padding: 1.25rem;
+    &:hover, &:focus {
+        color: $m3;
+    }
 }
