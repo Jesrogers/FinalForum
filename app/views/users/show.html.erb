@@ -1,0 +1,10 @@
+<section class="profile-section">
+    <div class="container">
+        <h1><%=@user.username %>'s Profile</h1>
+        <h3>Created Threads<h3>
+        <div class="forum-thread__container">
+            <%= render partial: "forums/forum_thread", collection: @user.forum_threads.ordered_by_updated %>
+        </div>
+    </div>
+</section>
+
