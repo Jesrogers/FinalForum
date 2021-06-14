@@ -15,6 +15,7 @@
 
     &:not(.header) {
         &:hover, &:focus, &:active {
+            color: inherit;
             background: lighten($m4, 35%);
         }
     }

@@ -10,6 +10,7 @@
     transition: all .15s;
 
     &:hover, &:focus, &:active {
+        color: $color-white;
         transform: scale(.95);
         background: darken($color: $m3, $amount: 5%);
     }
