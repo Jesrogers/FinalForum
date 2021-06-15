@@ -1,3 +1,15 @@
+.profile-section {
+    &__header {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__username {
+        margin-right: auto;
+    }
+}
+
 .stats {
     padding: 2.5rem 0 1.25rem 0;
 

@@ -1,7 +1,11 @@
 <%= form_with model: user, url: user_registration_path, class: 'form' do |form| %>
     <div class="form__title">
-      <h1>Sign up</h1>
+      <h1><%= form_title %></h1>
     </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
 
     <div class="form__field">
       <%= form.label :email, class: "form__label" %>
@@ -38,7 +42,15 @@
       <% end %>
     </div>
 
+    <div class="form__field">
+      <%= form.label :biography, class: "form__label" %>
+      <%= form.cktext_area :biography, class: "form__input" %>
+      <% user.errors.full_messages_for(:biography).each do |biography_error| %>
+        <span class="form__error"><%= biography_error %></span>
+      <% end %>
+    </div>
+
     <div class="form__actions">
-      <%= form.button "Sign Up", class: "form__submit" %>
+      <%= form.button "Submit", class: "form__submit" %>
     </div>
   <% end %>

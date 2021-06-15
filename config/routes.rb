@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
   get '/forums', to: 'channels#index'
 
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: "edit-profile" }, controllers: { registrations: 'registrations' }
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: "account" }, controllers: { registrations: 'registrations' }
   resources :users, only: [:show]
 end
