@@ -13,6 +13,7 @@
     transition: 0.25s all;
 
     &:hover, &:focus, &:active {
+        color: $m4;
         transform: scale(0.95);
         box-shadow: 0 0.1rem 0.4rem rgba($color-black, .15);          
     }

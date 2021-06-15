@@ -45,7 +45,7 @@
             color: $color-white;
             transition: 0.3s all;
 
-            &:hover {
+            &:hover, &:focus, &:focus {
                 background: $m2;
             }
         }

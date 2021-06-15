@@ -42,7 +42,7 @@
             transition: .3s all;
             height: 100%;
 
-            &:hover {
+            &:hover, &:focus, &:active {
                 background: $m2;
             }
         }
@@ -79,6 +79,24 @@
         color: $m3;
         font-size: 1.125rem;
         font-weight: 700;
+        
+        a {
+            color: inherit;
+            
+            &:hover, &:focus, &:active {
+                color: darken($m3, 10%);
+            }
+        }
+
+        &.admin {
+            color: $m2;
+            
+            a {
+                &:hover, &:focus, &:active {
+                    color: darken($m2, 12%);
+                }
+            }
+        }
     }
 
     &__title {

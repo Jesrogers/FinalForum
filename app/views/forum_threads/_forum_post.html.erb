@@ -1,8 +1,13 @@
 <div class="forum-post">
     <header class="forum-post__head bolded">
+        <% if !forum_post.has_attribute?(:title) %>
+                <%= link_to forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p'), "#comments:id=#{forum_post.id}", id: "comments:id=#{forum_post.id}" %>
+        <% else%>
+                <%= forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
+        <% end %>
+
         <% if reply_author?(forum_post) || user_has_role?(:admin) %>
             <% if !forum_post.has_attribute?(:title) %>
-                <%= link_to forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p'), "#comments:id=#{forum_post.id}", id: "comments:id=#{forum_post.id}" %>
                 <div class="forum-post__options">
                     <%= link_to edit_forum_reply_path(forum_post) do %>
                         <span class="fa fa-edit"></span>
@@ -11,8 +16,6 @@
                         <span class="fa fa-trash"></span>
                     <% end %>
                 </div>
-            <% else %>
-                <%= forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
             <% end %>
         <% end %>
     </header>
@@ -20,7 +23,7 @@
         <div class="forum-post__user">
             <img class="forum-post__avatar" src="https://via.placeholder.com/100" />
             <div class="forum-post__meta">
-                <span class="forum-post__author" <%= author_has_role?(forum_post.author, :admin) ? "style=color:#d33a56" : '' %>><%= forum_post.author.username %></span>
+                <span class="forum-post__author <%= author_has_role?(forum_post.author, :admin) ? 'admin' : '' %>" ><%= link_to forum_post.author.username, user_path(forum_post.author) %></span>
                 <% if author_has_role?(forum_post.author, :admin) %>
                     <div class="forum-post__title">Administrator</div>
                 <% end %>
