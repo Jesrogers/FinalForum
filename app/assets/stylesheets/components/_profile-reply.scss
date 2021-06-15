@@ -5,12 +5,14 @@
 
     &__forum {
         color: $s2;
-        margin-bottom: 10px;
+        margin-bottom: 1em;
     }
 
     &__content {
         p {
-            margin-bottom: 1em;
+            &:not(:last-child) {
+                margin-bottom: 1em;
+            }
         }
     }
 }

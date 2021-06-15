@@ -26,6 +26,7 @@ class ForumRepliesController < ApplicationController
     end
 
     def destroy
+        @forum_reply.destroy
         redirect_to forum_thread_path(@forum_reply.forum_thread), notice: "Reply deleted."
     end
 
