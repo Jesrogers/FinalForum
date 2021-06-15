@@ -16,6 +16,15 @@
         padding: 0.5em 1em;
         background: $m4;
         color: $color-white;
+
+        a {
+            color: inherit;
+            transition: .3s all;
+
+            &:hover {
+                color: $s1;
+            }
+        }
     }
 
     &__options {
