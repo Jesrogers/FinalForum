@@ -1,9 +1,43 @@
 <section class="profile-section">
     <div class="container">
         <h1><%=@user.username %>'s Profile</h1>
-        <h3>Created Threads<h3>
-        <div class="forum-thread__container">
-            <%= render partial: "forums/forum_thread", collection: @user.forum_threads.ordered_by_updated %>
+        <div class="biography">
+            <p>
+                Phasellus sit amet urna efficitur, porta odio vitae, condimentum purus. Praesent a orci blandit ex euismod pulvinar. In quis ligula sed sem mattis cursus. Aliquam erat volutpat. Morbi sed risus cursus, fermentum ex ultrices, ullamcorper leo. Aenean sagittis ante libero, ut pulvinar augue ornare eu. Aliquam fermentum massa nec nibh maximus dapibus. Vivamus et quam mauris.
+            </p>
+        </div>
+
+        <div class="tabs">
+            <ul class="tabs__list">
+                <li class="active tab" data-tab-target="#created">Threads</li>
+                <li class="tab" data-tab-target="#replies">Replies</li>
+            </ul>
+            <div class="tabs__content">
+                <div id="created" class="active tabs__panel" data-tab-content>
+                    <div class="forum-thread__container">
+                        <div class="forum-thread header">
+                            <div class="forum-thread__title">Title</div>
+                            <div class="forum-thread__author">Author</div>
+                            <div class="forum-thread__replies">Replies</div>
+                            <div class="forum-thread__activity">Activity</div>
+                        </div>
+                        <%= render partial: "forums/forum_thread", collection: @user.forum_threads.ordered_by_updated %>
+                    </div>
+                </div>
+                <div id="replies" class="tabs__panel" data-tab-content>
+                    <div class="profile-replies">
+                        <% @user.forum_replies.each do |reply| %>
+                            <article class="profile-reply">
+                                <h3 class="profile-reply__title"><%= link_to reply.forum_thread.title, forum_thread_path(reply.forum_thread, anchor: "comments:id=#{reply.id}") %></h3>
+                                <div class="profile-reply__forum"><%= reply.forum_thread.forum.title %></div>
+                                <div class="profile-reply__content">
+                                    <%= truncate(reply.body, escape: false, length: 600) %>
+                                </div>
+                            </article>
+                        <% end %>                    
+                    </div>
+                </div>
+            </div>    
         </div>
     </div>
 </section>

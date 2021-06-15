@@ -17,6 +17,8 @@ document.addEventListener('turbolinks:load', () => {
     const menuTrigger = document.querySelector('.menu-trigger');
     const notice = document.querySelector('.notice');
     const alert = document.querySelector('.alert');
+    const tabs = document.querySelectorAll('[data-tab-target]');
+    const tabContents = document.querySelectorAll('[data-tab-content]');
 
     menuTrigger.addEventListener('click', () => {
         body.classList.toggle('menu-open');
@@ -28,4 +30,22 @@ document.addEventListener('turbolinks:load', () => {
             alert.classList.add('inactive');
         }, 3000)
     }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = document.querySelector(tab.dataset.tabTarget);
+            tabContents.forEach(tabContent => {
+                tabContent.classList.remove('active');
+            });
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            tab.classList.add('active');
+            target.classList.add('active');
+        });
+    });
+
+
+
+
 });

@@ -10,13 +10,27 @@ section {
 
     .col-1-of-2 {
         width: 50%;
-        height: 12.5rem;
         padding: 0 1.25em;
-        background: lightblue;
     }
+
+    .col-1-of-3 {
+      width: 33.33%;
+      padding: 0 1.25em;
+  }
+
+    .col-2-of-3 {
+      width: 66.66%;
+      padding: 0 1.25em;
+  }
 
     &.direction-column {
         flex-direction: column;
+    }
+
+    [class*="col"] {
+      @media (max-width: 1000px) {
+        width: 100%;
+      }
     }
 }
 

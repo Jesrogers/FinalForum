@@ -1,0 +1,16 @@
+.profile-reply {
+    &:not(:last-child) {
+        padding-bottom: 1.25rem;
+    }
+
+    &__forum {
+        color: $s2;
+        margin-bottom: 10px;
+    }
+
+    &__content {
+        p {
+            margin-bottom: 1em;
+        }
+    }
+}

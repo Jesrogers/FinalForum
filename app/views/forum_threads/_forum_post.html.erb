@@ -1,6 +1,6 @@
 <div class="forum-post">
     <header class="forum-post__head bolded">
-        <%= forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
+        <%= link_to forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p'), "#comments:id=#{forum_post.id}", id: "comments:id=#{forum_post.id}" %>
         <% if reply_author?(forum_post) || user_has_role?(:admin) %>
             <% if !forum_post.has_attribute?(:title) %>
                 <div class="forum-post__options">

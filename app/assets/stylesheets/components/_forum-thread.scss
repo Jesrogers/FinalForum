@@ -54,6 +54,10 @@
         @include breakpoint(600px) {
             text-align: left;
         }
+
+        .user-threads & {
+            display: none;
+        }
     }
 
     &__replies {

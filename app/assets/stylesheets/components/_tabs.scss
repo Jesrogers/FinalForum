@@ -1,0 +1,51 @@
+[data-tab-content] {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.tabs {
+
+    &__list {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__content {
+        padding: 1.25rem 0;
+    }
+
+    .tab {
+        position: relative;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        font-size: 1.125rem;
+        transition: .3s all;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            transition: .2s all;
+            background: $m1;
+        }
+
+        &.active {
+            &::before {
+                width: 100%;
+            }
+        }
+
+        &:hover, &:focus, &:active {
+
+        }
+
+    }
+}
