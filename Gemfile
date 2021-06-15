@@ -28,10 +28,11 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'cancancan'
 gem 'ckeditor'
 gem 'devise'
 gem 'font-awesome-rails'
-gem 'cancancan'
+gem 'gravatar_image_tag', '~> 1.2'
 gem 'rolify'
 
 group :development, :test do

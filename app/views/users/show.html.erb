@@ -1,7 +1,8 @@
 <section class="profile-section">
     <div class="container">
         <div class="profile-section__header">
-            <h1 class="profile-section__username"><%=@user.username %>'s Profile</h1>        
+            <%= gravatar_image_tag(@user.email, class: 'profile-section__avatar', alt: @user.username) %>
+            <h1 class="profile-section__username"><%=@user.username %></h1>        
             <% if current_user == @user %>
                 <%= link_to "Edit Profile", edit_user_registration_path, class: "btn" %>
             <% end%>
@@ -17,11 +18,11 @@
             <h2>Stats</h2>
             <ul class="stats__list">
                 <li class="stats__item">
-                    <span class="stats__value">1</span>
+                    <span class="stats__value"><%= @user.forum_threads.length %></span>
                     <span class="stats__label">threads created</span>
                 </li>
                 <li class="stats__item">
-                    <span class="stats__value">3</span>
+                    <span class="stats__value"><%= @user.forum_replies.length %></span>
                     <span class="stats__label">replies created</span>
                 </li>
                 <li class="stats__item">

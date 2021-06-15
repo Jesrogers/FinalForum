@@ -104,15 +104,7 @@
     }
 
     &__avatar {
-        width: 6.25rem;
-        height: 6.25rem;
-        padding-right: 0.625rem;
-        margin-bottom: 0.3125rem;
-    
-        @include breakpoint(700px) {
-            width: 7.5rem;
-            height: 7.5rem;
-        }
+        @include avatar
     }
 
     &__body {
