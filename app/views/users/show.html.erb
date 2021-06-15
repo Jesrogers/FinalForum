@@ -2,7 +2,9 @@
     <div class="container">
         <div class="profile-section__header">
             <h1 class="profile-section__username"><%=@user.username %>'s Profile</h1>        
-             <%= link_to "Edit Profile", edit_user_registration_path, class: "btn" %>
+            <% if current_user == @user %>
+                <%= link_to "Edit Profile", edit_user_registration_path, class: "btn" %>
+            <% end%>
         </div>
 
         <div class="biography">

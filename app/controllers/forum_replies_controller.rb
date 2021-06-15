@@ -8,6 +8,7 @@ class ForumRepliesController < ApplicationController
         @forum_reply.author_id = current_user.id
 
         if @forum_reply.save
+            @forum_thread.update(updated_at: DateTime.now)
             redirect_to forum_thread_path(@forum_thread)
         else
             redirect_to forum_thread_path(@forum_thread)
@@ -19,6 +20,7 @@ class ForumRepliesController < ApplicationController
 
     def update
         if @forum_reply.update(forum_reply_params)
+            @forum_reply.forum_thread.update(updated_at: DateTime.now)
             redirect_to forum_thread_path(@forum_reply.forum_thread)
         else
             render :edit
