@@ -45,6 +45,6 @@ class ForumThreadsController < ApplicationController
     end
 
     def forum_thread_params
-        params.require(:forum_thread).permit(:title, :body, :stickied)
+        params.require(:forum_thread).permit(:title, :body, :pinned, :locked)
     end
 end

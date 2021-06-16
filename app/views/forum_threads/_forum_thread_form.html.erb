@@ -8,8 +8,12 @@
     </div>
     <% if user_has_role?(:admin) %>
         <div class="form__field form__field--row">
-            <%= form.check_box :stickied, class: "form__checkbox" %>
-            <%= form.label :stickied, class: "form__label" %>
+            <%= form.check_box :pinned, class: "form__checkbox" %>
+            <%= form.label :pinned, class: "form__label" %>
+        </div>
+        <div class="form__field form__field--row">
+            <%= form.check_box :locked, class: "form__checkbox" %>
+            <%= form.label :locked, class: "form__label" %>
         </div>
     <% end %>
     <div class="form__field">
