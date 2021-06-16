@@ -45,6 +45,10 @@ class ForumThreadsController < ApplicationController
     end
 
     def forum_thread_params
-        params.require(:forum_thread).permit(:title, :body, :pinned, :locked)
+        if helpers.user_has_role?(:admin)
+            params.require(:forum_thread).permit(:title, :body, :pinned, :locked)
+        else
+            params.require(:forum_thread).permit(:title, :body)
+        end
     end
 end
