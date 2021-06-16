@@ -6,6 +6,12 @@
         <%= form.label :title, class: "form__label" %>
         <%= form.text_field :title, required: true, class: "form__input" %>
     </div>
+    <% if user_has_role?(:admin) %>
+        <div class="form__field form__field--row">
+            <%= form.check_box :stickied, class: "form__checkbox" %>
+            <%= form.label :stickied, class: "form__label" %>
+        </div>
+    <% end %>
     <div class="form__field">
         <%= form.label :body, class: "form__label" %>
         <%= form.cktext_area :body, class: "form__input" %>

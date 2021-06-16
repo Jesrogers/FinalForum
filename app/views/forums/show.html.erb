@@ -13,7 +13,7 @@
                 <div class="forum-thread__replies">Replies</div>
                 <div class="forum-thread__activity">Activity</div>
             </div>
-            <%= render partial: "forum_thread", collection: @forum.forum_threads.ordered_by_updated %>
+            <%= render partial: "forum_thread", collection: @forum.forum_threads.ordered_by_updated.sort_by { |thread| thread.stickied ? 0 : 1} %>
         </div>
     </div>
 </section>
