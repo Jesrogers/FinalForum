@@ -10,10 +10,10 @@
     <% if user_has_role?(:admin) %>
         <footer class="forum-card__footer">
             <%= link_to edit_forum_path(forum) do %>
-                <span class="fa fa-edit"></span>
+                <span class="far fa-edit"></span>
             <% end %>
             <%= link_to forum_path(forum), method: :delete, data: {confirm: "Are you sure you want to delete the forum #{forum.title}?"} do %>
-                <span class="fa fa-trash"></span>            
+                <span class="far fa-trash-alt"></span>            
             <% end %>  
         </footer>
     <% end %>

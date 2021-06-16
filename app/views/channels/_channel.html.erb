@@ -3,10 +3,10 @@
         <h3><%= link_to channel.name, channel_path(channel) %></h3>
         <% if user_has_role?(:admin) %>
             <%= link_to edit_channel_path(channel) do %>
-                <span class="fa fa-edit"></span>
+                <span class="far fa-edit"></span>
             <% end %>
             <%= link_to channel_path(channel), method: :delete, data: {confirm: "Are you sure you want to delete the channel #{channel.name} and all associated forums?"} do %>
-                <span class="fa fa-trash"></span>            
+                <span class="far fa-trash-alt"></span>            
             <% end %>                
         <% end %>
     </header>

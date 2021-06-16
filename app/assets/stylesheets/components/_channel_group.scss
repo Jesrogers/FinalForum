@@ -10,16 +10,16 @@
         border-radius: 6px;
         background-color: $m1;
         color: $color-white;
-        font-size: 1.25rem;
         
         h3 {
             margin-right: auto;
             color: $color-white;
-            font-size: inherit;
+            font-size: 1.25rem;
             text-transform: uppercase;
 
             > a {
                 padding: 0.3em;
+                font-size: inherit;
             }
         }
 
@@ -27,10 +27,11 @@
             color: $color-white;
             transition: 0.3s all;
             border-radius: 4px;
+            font-size: 1.125rem;
             text-decoration: none;
             
             &:not(:last-child) {
-                margin-right: 1em;
+                margin-right: 0.5em;
             }
 
             &:hover, &:focus, &:active {

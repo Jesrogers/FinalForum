@@ -31,7 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cancancan'
 gem 'ckeditor'
 gem 'devise'
-gem 'font-awesome-rails'
+gem 'font_awesome5_rails'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'rolify'
 

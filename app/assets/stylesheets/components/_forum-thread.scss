@@ -1,5 +1,6 @@
 .forum-thread {
     display: flex;
+    align-items: center;
     padding: 1.25em;
     text-decoration: none;
     color: inherit;
@@ -33,8 +34,8 @@
     }
 
     &__icon {
-        color: $m4;
-        padding: 0.25rem;
+        color: $m2;
+        padding: 0.25em 0.5em .25em .25em;
     }
 
 

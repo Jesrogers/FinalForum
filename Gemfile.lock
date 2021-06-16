@@ -90,8 +90,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     ffi (1.15.0)
-    font-awesome-rails (4.7.0.7)
-      railties (>= 3.2, < 7)
+    font_awesome5_rails (1.4.0)
+      railties (>= 4.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     gravatar_image_tag (1.2.0)
@@ -226,7 +226,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   ckeditor
   devise
-  font-awesome-rails
+  font_awesome5_rails
   gravatar_image_tag (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
