@@ -32,6 +32,11 @@
         border-radius: 8px;
     }
 
+    &__icon {
+        color: $m4;
+        padding: 0.25rem;
+    }
+
 
     &__title {
         flex: 1 1 70%;
