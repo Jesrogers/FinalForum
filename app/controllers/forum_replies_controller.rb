@@ -1,6 +1,6 @@
 class ForumRepliesController < ApplicationController
     before_action :authenticate_user!
-    load_and_authorize_resource only: [:edit, :update, :destroy]
+    load_and_authorize_resource only: [:edit, :create, :update, :destroy]
 
     def create
         @forum_thread = ForumThread.find(params[:forum_thread_id])

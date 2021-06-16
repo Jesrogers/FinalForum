@@ -1,7 +1,12 @@
 <div class="forum-card">
     <%= link_to forum_path(forum), class: "forum-card__link" do %>
         <header class="forum-card__header">
-            <h4><%= forum.title %></h4>
+            <h4>
+                <% if forum.locked %>
+                    <span class="fa fa-lock forum-card__icon"></span>
+                <% end %>
+                <%= forum.title %>
+            </h4>
         </header>
         <div class="forum-card__content">
             <p><%= forum.description %></p>

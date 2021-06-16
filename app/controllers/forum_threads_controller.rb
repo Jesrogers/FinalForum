@@ -1,7 +1,7 @@
 class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, except: [:show]
     before_action :set_forum, only: [:new, :create]
-    load_and_authorize_resource only: [:edit, :update, :destroy]
+    load_and_authorize_resource only: [:edit, :create, :update, :destroy]
 
     def new
         @forum_thread = ForumThread.new

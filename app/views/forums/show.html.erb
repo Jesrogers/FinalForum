@@ -1,11 +1,19 @@
 <section class="forum-section">
     <div class="container">
         <h1><%= @forum.title %></h1>
-        <% if user_signed_in? %>
+
+        <% if @forum.locked %>
+            <div class="message message--danger">
+                This forum is locked. Feel free to browse, but interaction is disabled.
+            </div>
+        <% end %>
+
+        <% if (user_signed_in? && !@forum.locked) || user_has_role?(:admin) %>
             <div class="thread-options">
                 <%= link_to "New Thread", new_forum_forum_thread_path(@forum.id), class: "btn" %>
             </div>
         <% end %>
+
         <div class="forum-thread__container">
             <div class="forum-thread header">
                 <div class="forum-thread__title">Title</div>

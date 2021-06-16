@@ -1,0 +1,11 @@
+.message {
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+    border-radius: 8px;
+
+    &--danger {
+        color: darken($m2, 12%);
+        background: rgba($m2, .2);
+        border: 1px solid $m2;
+    }
+}
