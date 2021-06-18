@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Bill = User.create!(username: "Billinator", email: "test@gmail.com", password: "testtest", password_confirmation: "testtest", slug: "billinator", last_sign_in_at: DateTime.now)
-User.create!(username: "Freddy", email: "testy@gmail.com", password: "testtest", password_confirmation: "testtest", slug: "freddy", last_sign_in_at: DateTime.now)
-User.create!(username: "Coolguyjohn", email: "testyy@gmail.com", password: "testtest", password_confirmation: "testtest", slug: "coolguyjohn", last_sign_in_at: DateTime.now)
+Bill = User.create!(username: "Billinator", email: "test@gmail.com", password: "testtest", password_confirmation: "testtest", last_sign_in_at: DateTime.now)
+User.create!(username: "Freddy", email: "testy@gmail.com", password: "testtest", password_confirmation: "testtest", last_sign_in_at: DateTime.now)
+User.create!(username: "Coolguyjohn", email: "testyy@gmail.com", password: "testtest", password_confirmation: "testtest", last_sign_in_at: DateTime.now)
 
 Channel.create(name: 'Employees', position: 1)
 Channel.create(name: 'Departments', position: 1)

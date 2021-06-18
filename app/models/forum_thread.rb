@@ -6,5 +6,12 @@ class ForumThread < ApplicationRecord
 
     resourcify
 
+    extend FriendlyId
+    friendly_id :title, use: [:slugged, :finders]
+  
+    def should_generate_new_friendly_id?
+      title_changed?
+    end
+
     scope :ordered_by_updated, -> { order("updated_at DESC") }
 end

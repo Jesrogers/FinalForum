@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_175903) do
+ActiveRecord::Schema.define(version: 2021_06_18_181755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2021_06_18_175903) do
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_channels_on_slug", unique: true
   end
 
   create_table "forum_replies", force: :cascade do |t|
@@ -41,8 +43,10 @@ ActiveRecord::Schema.define(version: 2021_06_18_175903) do
     t.bigint "forum_id"
     t.boolean "pinned", default: false
     t.boolean "locked", default: false
+    t.string "slug"
     t.index ["author_id"], name: "index_forum_threads_on_author_id"
     t.index ["forum_id"], name: "index_forum_threads_on_forum_id"
+    t.index ["slug"], name: "index_forum_threads_on_slug", unique: true
   end
 
   create_table "forums", force: :cascade do |t|
@@ -53,7 +57,9 @@ ActiveRecord::Schema.define(version: 2021_06_18_175903) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "channel_id"
     t.string "description"
+    t.string "slug"
     t.index ["channel_id"], name: "index_forums_on_channel_id"
+    t.index ["slug"], name: "index_forums_on_slug", unique: true
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
