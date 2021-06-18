@@ -1,0 +1,13 @@
+.breadcrumbs-nav {
+    &__list {
+        display: flex;
+        padding: 0;
+        font-weight: 700;
+        list-style-type: none;
+    }
+
+    &__separator {
+        padding: 0 0.625em;
+        font-weight: 400;
+    }
+}

@@ -5,6 +5,9 @@ class ForumsController < ApplicationController
 
     def show
         @forum = Forum.find(params[:id])
+
+        add_breadcrumb("Forums", "/forums")
+        add_breadcrumb(@forum.title)
     end
 
     def new

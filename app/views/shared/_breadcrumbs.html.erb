@@ -1,0 +1,17 @@
+<nav class="breadcrumbs-nav">
+    <ul class="breadcrumbs-nav__list">
+        <% breadcrumbs.each do |crumb|%>
+            <li class="breadcrumbs-nav__crumb">
+                <% if crumb.link? %>
+                    <%= link_to crumb.name, crumb.path %>
+                <% else %>
+                    <%= crumb.name %>
+                <% end %>
+
+                <% unless crumb == breadcrumbs.last %>
+                    <span class="breadcrumbs-nav__separator">/</span>
+                <% end %>
+            </li>
+        <% end %>
+    </ul>
+</nav>

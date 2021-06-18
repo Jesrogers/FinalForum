@@ -6,6 +6,8 @@ class ChannelsController < ApplicationController
     end
 
     def show
+        add_breadcrumb("Channels", "/forums")
+        add_breadcrumb(@channel.name)
     end
 
     def new

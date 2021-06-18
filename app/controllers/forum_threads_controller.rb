@@ -22,6 +22,10 @@ class ForumThreadsController < ApplicationController
 
     def show
         @forum_thread = ForumThread.find(params[:id])
+
+        add_breadcrumb("Forums", "/forums")
+        add_breadcrumb(@forum_thread.forum.title, forum_path(@forum_thread.forum))
+        add_breadcrumb(@forum_thread.title)
     end
 
     def edit

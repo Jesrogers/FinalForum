@@ -1,32 +1,33 @@
 <section class="thread-section">
     <div class="container">
-    <h1><%= @forum_thread.title %></h1>
+        <%= render partial: "shared/breadcrumbs" %>
+        <h1><%= @forum_thread.title %></h1>
 
-    <% if @forum_thread.forum.locked? %>
-        <div class="message message--danger">
-            This forum is locked. Feel free to browse, but interaction is disabled.
-        </div>
-    <% elsif @forum_thread.locked? %> 
+        <% if @forum_thread.forum.locked? %>
             <div class="message message--danger">
-                This thread is locked. Feel free to browse, but interaction is disabled.
+                This forum is locked. Feel free to browse, but interaction is disabled.
             </div>
-    <% end %>
+        <% elsif @forum_thread.locked? %> 
+                <div class="message message--danger">
+                    This thread is locked. Feel free to browse, but interaction is disabled.
+                </div>
+        <% end %>
 
-    <% if (thread_author?(@forum_thread) && !@forum_thread.forum.locked) || user_has_role?(:admin) %>
-        <div class="create-thread">
-            <%= link_to "Edit", edit_forum_thread_path(@forum_thread), class: "btn" %>    
-            <%= link_to "Delete", forum_thread_path(@forum_thread), method: :delete, data: {confirm: "Are you sure you want to delete the thread #{@forum_thread.title}"}, class: "btn btn--danger" %>
+        <% if (thread_author?(@forum_thread) && !@forum_thread.forum.locked) || user_has_role?(:admin) %>
+            <div class="create-thread">
+                <%= link_to "Edit", edit_forum_thread_path(@forum_thread), class: "btn" %>    
+                <%= link_to "Delete", forum_thread_path(@forum_thread), method: :delete, data: {confirm: "Are you sure you want to delete the thread #{@forum_thread.title}"}, class: "btn btn--danger" %>
+            </div>
+        <% end %>
+
+        <div class="forum-post__container">
+            <%= render "forum_post", forum_post: @forum_thread %>
+            <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies %>
         </div>
-    <% end %>
 
-    <div class="forum-post__container">
-        <%= render "forum_post", forum_post: @forum_thread %>
-        <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies %>
+        <% if user_has_role?(:admin) || (!@forum_thread.locked && !@forum_thread.forum.locked) %>
+            <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
+        <% end %>
+        
     </div>
-
-    <% if user_has_role?(:admin) || (!@forum_thread.locked && !@forum_thread.forum.locked) %>
-        <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
-    <% end %>
-    
-</div>
 </section>

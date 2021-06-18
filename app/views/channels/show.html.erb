@@ -1,4 +1,5 @@
 <div class="container">
+    <%= render partial: "shared/breadcrumbs" %>
     <h1><%= @channel.name %></h1>
     <div class="row direction-column">
         <%= render "channel", channel: @channel %>

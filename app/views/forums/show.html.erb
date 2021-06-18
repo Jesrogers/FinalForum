@@ -1,5 +1,6 @@
 <section class="forum-section">
     <div class="container">
+        <%= render partial: "shared/breadcrumbs" %>
         <h1><%= @forum.title %></h1>
 
         <% if @forum.locked %>
