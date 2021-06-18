@@ -32,6 +32,7 @@ gem 'cancancan'
 gem 'ckeditor'
 gem 'devise'
 gem 'font_awesome5_rails'
+gem 'friendly_id', '~> 5.4.0'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'rolify'
 

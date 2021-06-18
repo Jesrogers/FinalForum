@@ -92,6 +92,8 @@ GEM
     ffi (1.15.0)
     font_awesome5_rails (1.4.0)
       railties (>= 4.2)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     gravatar_image_tag (1.2.0)
@@ -227,6 +229,7 @@ DEPENDENCIES
   ckeditor
   devise
   font_awesome5_rails
+  friendly_id (~> 5.4.0)
   gravatar_image_tag (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
