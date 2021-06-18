@@ -24,7 +24,7 @@
         <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies %>
     </div>
 
-    <% if can? :create, @forum_thread %>
+    <% if user_has_role?(:admin) || (!@forum_thread.locked && !@forum_thread.forum.locked) %>
         <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
     <% end %>
     
