@@ -10,6 +10,7 @@
     <div class="form__field">
       <%= form.label :email, class: "form__label" %>
       <%= form.email_field :email, class: "form__input", autofocus: true, required: true, autocomplete: "email" %>
+
       <% user.errors.full_messages_for(:email).each do |email_error| %>
         <span class="form__error"><%= email_error %></span>
       <% end %>
@@ -18,17 +19,34 @@
     <div class="form__field">
       <%= form.label :username, class: "form__label" %>
       <%= form.text_field :username, class: "form__input", required: true, autocomplete: "email" %>
+
       <% user.errors.full_messages_for(:username).each do |username_error| %>
         <span class="form__error"><%= username_error %></span>
       <% end %>
     </div>
 
     <div class="form__field">
+      <%= form.label :biography, class: "form__label" %>
+      <%= form.cktext_area :biography, class: "form__input" %>
+
+      <% user.errors.full_messages_for(:biography).each do |biography_error| %>
+        <span class="form__error"><%= biography_error %></span>
+      <% end %>
+    </div>
+
+    <div class="form__actions">
+      <%= form.button "Submit", class: "form__submit" %>
+    </div>
+
+    <hr>
+
+    <div class="form__field">
       <%= form.label :password, class: "form__label" %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
-      <%= form.password_field :password, class: "form__input", required: true, autocomplete: "new-password" %>
+      <%= form.password_field :password, class: "form__input", autocomplete: "new-password" %>
+
       <% user.errors.full_messages_for(:password).each do |password_error| %>
         <span class="form__error"><%= password_error %></span>
       <% end %>
@@ -36,17 +54,20 @@
 
     <div class="form__field">
       <%= form.label :password_confirmation, class: "form__label" %>
-      <%= form.password_field :password_confirmation, class: "form__input", required: true, autocomplete: "new-password" %>
+      <%= form.password_field :password_confirmation, class: "form__input", autocomplete: "new-password" %>
+
       <% user.errors.full_messages_for(:password_confirmation).each do |password_confirm_error| %>
         <span class="form__error"><%= password_confirm_error %></span>
       <% end %>
     </div>
+    
 
     <div class="form__field">
-      <%= form.label :biography, class: "form__label" %>
-      <%= form.cktext_area :biography, class: "form__input" %>
-      <% user.errors.full_messages_for(:biography).each do |biography_error| %>
-        <span class="form__error"><%= biography_error %></span>
+      <%= form.label :current_password, class: "form__label" %>
+      <%= form.password_field :current_password, class: "form__input", autocomplete: "current-password" %>
+
+      <% user.errors.full_messages_for(:current_password).each do |current_password_error| %>
+        <span class="form__error"><%= current_password_error %></span>
       <% end %>
     </div>
 

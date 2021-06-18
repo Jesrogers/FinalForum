@@ -5,6 +5,14 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def account_update_params
-        params.require(:user).permit(:email, :username, :password, :password_confirmation, :biography)  
+        params.require(:user).permit(:email, :username, :password, :password_confirmation, :current_password, :biography)  
+    end
+
+    protected 
+
+    def update_resource(resource, params)
+        return super if params["password"]&.present?
+
+        resource.update_without_password(params.except("current_password"))
     end
 end
