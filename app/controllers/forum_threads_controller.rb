@@ -1,15 +1,17 @@
 class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, except: [:show]
     before_action :set_forum, only: [:new, :create]
-    load_and_authorize_resource only: [:edit, :create, :update, :destroy]
+    load_and_authorize_resource except: [:new, :create]
 
     def new
-        @forum_thread = ForumThread.new
+        @forum_thread = @forum.forum_threads.build
+        authorize! :create, @forum_thread
     end
 
     def create
         @forum_thread = @forum.forum_threads.build(forum_thread_params)
         @forum_thread.author_id = current_user.id
+        authorize! :create, @forum_thread
 
         if @forum_thread.save
             redirect_to forum_thread_path(@forum_thread)

@@ -1,11 +1,12 @@
 class ForumRepliesController < ApplicationController
     before_action :authenticate_user!
-    load_and_authorize_resource only: [:edit, :create, :update, :destroy]
+    load_and_authorize_resource except: [:create]
 
     def create
         @forum_thread = ForumThread.find(params[:forum_thread_id])
         @forum_reply = @forum_thread.forum_replies.build(forum_reply_params)
         @forum_reply.author_id = current_user.id
+        authorize! :create, @forum_reply
 
         if @forum_reply.save
             @forum_thread.update(updated_at: DateTime.now)
