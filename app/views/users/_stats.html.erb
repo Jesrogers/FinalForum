@@ -1,0 +1,21 @@
+<div class="stats">
+    <h2>Stats</h2>
+    <ul class="stats__list">
+        <li class="stats__item">
+            <span class="stats__value"><%= user.forum_threads.length %></span>
+            <span class="stats__label">threads created</span>
+        </li>
+        <li class="stats__item">
+            <span class="stats__value"><%= user.forum_replies.length %></span>
+            <span class="stats__label">replies created</span>
+        </li>
+        <li class="stats__item">
+            <span class="stats__value"><%= user.created_at.strftime('%D') %></span>
+            <span class="stats__label">account created</span>
+        </li>
+        <li class="stats__item">
+            <span class="stats__value"><%= user.last_sign_in_at.strftime('%D')%></span>
+            <span class="stats__label">last visited</span>
+        </li>
+    </ul>   
+</div>
