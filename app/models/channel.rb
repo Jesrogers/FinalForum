@@ -1,4 +1,7 @@
 class Channel < ApplicationRecord
+    validates :name, presence: true, length: { maximum: 40 }
+    validates :position, presence: true, numericality: { only_integer: true }
+
     has_many :forums, dependent: :destroy
 
     resourcify
