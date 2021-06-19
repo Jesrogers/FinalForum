@@ -20,7 +20,7 @@
                 <% user.forum_replies.each do |reply| %>
                     <article class="profile-reply">
                         <h3 class="profile-reply__title"><%= link_to reply.forum_thread.title, forum_thread_path(reply.forum_thread, anchor: "comments:id=#{reply.id}") %></h3>
-                        <div class="profile-reply__forum"><%= reply.forum_thread.forum.title %></div>
+                        <div class="profile-reply__sub"><%= reply.forum_thread.forum.title %></div>
                         <div class="profile-reply__content">
                             <%= truncate(reply.body, escape: false, length: 600) %>
                         </div>

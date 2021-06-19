@@ -1,0 +1,14 @@
+<section class="latest-section">
+    <div class="container">
+        <h1>Latest Activity</h1>
+        <div class="forum-thread__container">
+            <div class="forum-thread header">
+                <div class="forum-thread__title">Title</div>
+                <div class="forum-thread__author">Author</div>
+                <div class="forum-thread__replies">Replies</div>
+                <div class="forum-thread__activity">Activity</div>
+            </div>
+            <%= render partial: "forums/forum_thread", collection: @latest_threads %>
+        </div>
+    </div>
+</section>

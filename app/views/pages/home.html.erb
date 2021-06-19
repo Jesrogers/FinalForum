@@ -1,0 +1,16 @@
+<section class="news-section">
+    <div class="container">
+        <h2 class="news-section__title">News and Announcements</h2>
+        <div class="news-section__content">
+            <% @news_posts.each do |post| %>
+                <article class="profile-reply">
+                    <h3 class="profile-reply__title"><%= link_to post.title, forum_thread_path(post) %></h3>
+                    <div class="profile-reply__sub">by <%= link_to post.author.username, user_path(post.author) %>, <%= post.created_at.strftime('%Y-%m-%d, %I:%M %p')  %></div>
+                    <div class="profile-reply__content">
+                        <%= sanitize post.body %>
+                    </div>
+                </article>
+            <% end %>
+        </div>
+    </div>
+</section>

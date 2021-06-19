@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   get '/forums', to: 'channels#index'
+  get '/latest', to: 'pages#latest'
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: "account" }, controllers: { registrations: 'registrations' }
   resources :users, only: [:show]
