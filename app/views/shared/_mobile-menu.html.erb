@@ -1,0 +1,26 @@
+<div class="menu">
+    <div class="menu__top">
+        <button class="menu-trigger">
+            <span class="menu-trigger__bar"></span>
+            <span class="menu-trigger__bar"></span>
+            <span class="menu-trigger__bar"></span>        
+        </button>
+    </div>
+    <nav>
+        <ul class="menu__list menu__list--main">
+            <li class="menu__item"><%= link_to "Forums", "/forums", class: "menu__link" %></li>
+            <li class="menu__item"><%= link_to "Latest", "/latest", class: "menu__link" %></li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="menu__account">
+            <% if user_signed_in? %>
+                <li class="menu__account-item"><%= link_to current_user.username, user_path(current_user), class: "menu__account-link" %></li>
+                <li class="menu__acount-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "menu__account-link" %></li>
+            <% else %>
+                <li class="menu__account-item"><%= link_to 'Register', new_user_registration_path, class: "menu__account-link" %></li>
+                <li class="menu__account-item"><%= link_to 'Login', new_user_session_path, class: "menu__account-link" %></li>
+            <% end %>
+        </ul>    
+    </nav>
+</div>

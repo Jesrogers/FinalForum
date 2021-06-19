@@ -14,14 +14,16 @@ ActiveStorage.start()
 
 document.addEventListener('turbolinks:load', () => {
     const body = document.getElementsByTagName('body')[0];
-    const menuTrigger = document.querySelector('.menu-trigger');
+    const menuTrigger = document.querySelectorAll('.menu-trigger');
     const notice = document.querySelector('.notice');
     const alert = document.querySelector('.alert');
     const tabs = document.querySelectorAll('[data-tab-target]');
     const tabContents = document.querySelectorAll('[data-tab-content]');
 
-    menuTrigger.addEventListener('click', () => {
-        body.classList.toggle('menu-open');
+    menuTrigger.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            body.classList.toggle('menu-open');
+        });
     });
 
     if (notice.childNodes.length || alert.childNodes.length) {
