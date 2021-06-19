@@ -50,11 +50,11 @@
         grid-gap: 1.25rem;
         padding: 1rem 0;
 
-        @include breakpoint(800px) {
+        @include breakpoint(700px) {
             grid-template-columns: repeat(2, 1fr);
         }
     
-        @include breakpoint(1200px) {
+        @include breakpoint(1100px) {
             grid-template-columns: repeat(3, 1fr);    
         }
 
