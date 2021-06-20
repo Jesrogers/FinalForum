@@ -5,15 +5,15 @@
     <div class="form__field">
         <%= form.label :name, class: "form__label" %>
         <%= form.text_field :name, class: "form__input", required: true %>
-        <% channel.errors.full_messages_for(:name).each do |password_error| %>
-            <span class="form__error"><%= password_error %></span>
+        <% channel.errors.full_messages_for(:name).each do |name_error| %>
+            <span class="form__error"><%= name_error %></span>
       <% end %>
     </div>
     <div class="form__field">
         <%= form.label :position, class: "form__label" %>
         <%= form.number_field :position, class: "form__input", value: 1 %>
-        <% channel.errors.full_messages_for(:position).each do |password_error| %>
-            <span class="form__error"><%= password_error %></span>
+        <% channel.errors.full_messages_for(:position).each do |position_error| %>
+            <span class="form__error"><%= position_error %></span>
       <% end %>
     </div>
     <%= form.submit "Submit", class: "form__submit" %>

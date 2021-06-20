@@ -1,6 +1,6 @@
 class ForumsController < ApplicationController
     before_action :authenticate_user!, except: [:show]
-    before_action :find_channels, only: [:new, :edit]
+    before_action :find_channels, only: [:new, :edit, :create, :update]
     load_and_authorize_resource except: [:show]
 
     def show
@@ -11,20 +11,26 @@ class ForumsController < ApplicationController
     end
 
     def new
+        @selected_channel = Channel.find(params[:channel])
     end
 
     def create
+        
         if @forum.save
             redirect_to '/forums'
         else
+            @selected_channel = Channel.find(params[:forum][:channel_id])
             render :new
         end
     end
 
     def edit
+        @selected_channel = Forum.find(params[:id]).channel
     end
 
     def update
+        @selected_channel = Forum.find(params[:id]).channel
+
         if @forum.update(forum_params)
             redirect_to '/forums'
         else

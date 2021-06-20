@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_233533) do
+ActiveRecord::Schema.define(version: 2021_06_20_154106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(version: 2021_06_19_233533) do
   end
 
   create_table "forums", force: :cascade do |t|
-    t.string "title"
+    t.string "title", limit: 60, null: false
     t.integer "position", default: 1
     t.boolean "locked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "channel_id"
-    t.string "description"
+    t.string "description", limit: 120
     t.string "slug"
     t.index ["channel_id"], name: "index_forums_on_channel_id"
     t.index ["slug"], name: "index_forums_on_slug", unique: true

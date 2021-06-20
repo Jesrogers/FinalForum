@@ -48,16 +48,16 @@
 
     &__content {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         grid-gap: 1.25rem;
         padding: 1rem 0;
 
         @include breakpoint(700px) {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
     
         @include breakpoint(1100px) {
-            grid-template-columns: repeat(3, 1fr);    
+            grid-template-columns: repeat(3, minmax(0, 1fr));    
         }
 
     }

@@ -5,20 +5,32 @@
     <div class="form__field">
         <%= form.label :title, class: "form__label" %>
         <%= form.text_field :title, required: true, class: "form__input" %>
+        <% forum.errors.full_messages_for(:title).each do |title_error| %>
+            <span class="form__error"><%= title_error %></span>
+      <% end %>
     </div>
     <div class="form__field">
         <%= form.label :description, class: "form__label" %>
         <%= form.text_area :description, class: "form__input", rows: 4 %>
+        <% forum.errors.full_messages_for(:description).each do |description_error| %>
+            <span class="form__error"><%= description_error %></span>
+      <% end %>
     </div>
     <div class="form__field">
         <%= form.label :channel_id, class: "form__label" %>
         <div class="form__select-wrapper">
-            <%= form.select :channel_id, channel_options, {}, selected: params[:channel], class: "form__input form__input--select" %>    
+            <%= form.select :channel_id, options_for_select(@channel_options, @selected_channel.id), {}, class: "form__input form__input--select" %>    
         </div>
+        <% forum.errors.full_messages_for(:channel_id).each do |channel_id_error| %>
+            <span class="form__error"><%= channel_id_error %></span>
+      <% end %>
     </div>
     <div class="form__field">
         <%= form.label :position, class: "form__label" %>
-        <%= form.number_field :position, class: "form__input form__input--number" %>
+        <%= form.number_field :position, required: true, class: "form__input form__input--number" %>
+        <% forum.errors.full_messages_for(:position).each do |position_error| %>
+            <span class="form__error"><%= position_error %></span>
+      <% end %>
     </div>
     <div class="form__field form__field--row">
         <%= form.check_box :locked, class: "form__checkbox" %>
