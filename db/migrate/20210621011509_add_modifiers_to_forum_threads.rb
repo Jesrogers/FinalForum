@@ -5,6 +5,6 @@ class AddModifiersToForumThreads < ActiveRecord::Migration[6.1]
     change_column :forum_threads, :author_id, :bigint, null: false
     change_column :forum_threads, :forum_id, :bigint, null: false
 
-    change_column :forums, :channel_id, null: false
+    change_column :forums, :channel_id, :bigint, null: false
   end
 end
