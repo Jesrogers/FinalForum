@@ -2,7 +2,8 @@ class Forum < ApplicationRecord
     validates :title, presence: true, length: { maximum: 60 }
     validates :description, length: { maximum: 120 }
     validates :position, presence: true, numericality: { only_integer: true }
-    
+    validates :channel_id, presence: true
+        
     belongs_to :channel
     has_many :forum_threads, dependent: :destroy
 

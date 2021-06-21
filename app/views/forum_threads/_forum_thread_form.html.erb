@@ -5,6 +5,9 @@
     <div class="form__field">
         <%= form.label :title, class: "form__label" %>
         <%= form.text_field :title, required: true, class: "form__input" %>
+        <% forum_thread.errors.full_messages_for(:title).each do |title_error| %>
+            <span class="form__error"><%= title_error %></span>
+      <% end %>
     </div>
     <% if user_has_role?(:admin) %>
         <div class="form__field form__field--row">
@@ -18,7 +21,11 @@
     <% end %>
     <div class="form__field">
         <%= form.label :body, class: "form__label" %>
-        <%= form.cktext_area :body, class: "form__input" %>
+        <%= form.cktext_area :body, class: "form__input", required: true %>
+        <% forum_thread.errors.full_messages_for(:body).each do |body_error| %>
+            <span class="form__error"><%= body_error %></span>
+        <% end %>
     </div>
+
     <%= form.submit "Submit", class: "form__submit" %>
 <% end %>
