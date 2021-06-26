@@ -3,6 +3,15 @@
         <%= render partial: "shared/breadcrumbs" %>
         <h1><%= @forum_thread.title %></h1>
 
+        <% if @reply_error %>
+            <script type="text/javascript">
+            setTimeout(() => {
+                document.querySelector('.form__submit').scrollIntoView({behavior: 'smooth'});                
+            }, 100);
+
+            </script>
+        <% end %>
+
         <% if @forum_thread.forum.locked? %>
             <div class="message message--danger">
                 This forum is locked. Feel free to browse, but interaction is disabled.
@@ -21,12 +30,17 @@
         <% end %>
 
         <div class="forum-post__container">
-            <%= render "forum_post", forum_post: @forum_thread %>
-            <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies %>
+            <%= render "forum_threads/forum_post", forum_post: @forum_thread %>
+            <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies.where.not(id: nil) %>
         </div>
 
         <% if user_has_role?(:admin) || (!@forum_thread.locked && !@forum_thread.forum.locked) %>
-            <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
+            <% if @forum_reply.present? %>
+                <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply", reply_body: @forum_reply.body} %>
+            <% else %>
+                <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply"} %>
+            <% end %>
+
         <% end %>
         
     </div>

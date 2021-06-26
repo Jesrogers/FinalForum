@@ -1,4 +1,8 @@
     en:
+        activerecord:
+          attributes: 
+            forum_reply: 
+              body: "Reply"
         datetime:
             distance_in_words:
               about_x_hours:

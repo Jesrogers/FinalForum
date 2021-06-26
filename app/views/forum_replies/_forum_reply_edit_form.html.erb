@@ -4,6 +4,9 @@
     </div>
     <div class="form__field">
         <%= form.cktext_area :body, class: "form__input" %>
+        <% forum_reply.errors.full_messages_for(:body).each do |body_error| %>
+            <span class="form__error"><%= body_error %></span>
+      <% end %>
     </div>
     <%= form.submit "Submit", class: "form__submit" %>    
 <% end %>
