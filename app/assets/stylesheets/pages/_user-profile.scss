@@ -19,6 +19,12 @@
         margin-bottom: 0;
         margin-right: auto;
     }
+
+    &__biography {
+        p:not(:last-child) {
+            margin-bottom: 1em;
+        }
+    }
 }
 
 .stats {
