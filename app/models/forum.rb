@@ -16,5 +16,5 @@ class Forum < ApplicationRecord
       title_changed?
     end
 
-    scope :ordered_by_position, -> { order(:position) }
+    scope :ordered_by_position, -> { order(:position, :title) }
 end

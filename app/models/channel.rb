@@ -13,5 +13,5 @@ class Channel < ApplicationRecord
       name_changed?
     end
 
-    scope :ordered_by_position, -> { order(:position) }
+    scope :ordered_by_position, -> { order(:position, :name) }
 end

@@ -10,9 +10,13 @@ class RegistrationsController < Devise::RegistrationsController
 
     protected 
 
-    def update_resource(resource, params)
+    def after_update_path_for(user)
+        user_path(user)
+    end
+
+    def update_resource(user, params)
         return super if params["password"]&.present?
 
-        resource.update_without_password(params.except("current_password"))
+        user.update_without_password(params.except("current_password"))
     end
 end
