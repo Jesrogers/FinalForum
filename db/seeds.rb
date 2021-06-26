@@ -14,7 +14,7 @@ Channel.create(name: 'Employees', position: 2)
 Channel.create(name: 'Departments', position: 3)
 Channel.create(name: 'News', position: 1)
 
-Forum.create(channel_id: 1, title: "General Discussion", locked: false, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula', position: 1)
+Forum.create(channel_id: 1, title: "General Discussion", locked: false, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula', position: 0)
 Forum.create(channel_id: 1, title: "Marketplace", locked: false, description: 'Suspendisse sollicitudin imperdiet velit, in eleifend sapien', position: 1)
 Forum.create(channel_id: 1, title: "Finalsite Fitness", locked: false, description: 'Donec mi magna, consequat vel lectus vel, aliquam venenatis eros. Ut ut venenatis dolor', position: 1)
 Forum.create(channel_id: 2, title: "Support", locked: false, description: 'Lectus magna fringilla urna porttitor rhoncus dolor purus non enim. Diam in arcu cursus euismod', position: 1)

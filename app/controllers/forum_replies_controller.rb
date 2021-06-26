@@ -12,9 +12,7 @@ class ForumRepliesController < ApplicationController
             @forum_thread.update(updated_at: DateTime.now)
             redirect_to forum_thread_path(@forum_thread)
         else
-            add_breadcrumb("Forums", "/forums")
-            add_breadcrumb(@forum_thread.forum.title, forum_path(@forum_thread.forum))
-            add_breadcrumb(@forum_thread.title)
+            add_forum_thread_breadcrumbs
             
             @reply_error = true
             flash.now[:alert] = "Error while posting reply"
@@ -23,6 +21,8 @@ class ForumRepliesController < ApplicationController
     end
 
     def edit
+        @forum_thread = ForumThread.find(@forum_reply.forum_thread_id)
+        add_forum_thread_breadcrumbs
     end
 
     def update
@@ -30,6 +30,9 @@ class ForumRepliesController < ApplicationController
             @forum_reply.forum_thread.update(updated_at: DateTime.now)
             redirect_to forum_thread_path(@forum_reply.forum_thread)
         else
+            @forum_thread = ForumThread.find(@forum_reply.forum_thread_id)
+            add_forum_thread_breadcrumbs
+
             render :edit
         end
     end
@@ -43,5 +46,11 @@ class ForumRepliesController < ApplicationController
     
     def forum_reply_params
         params.require(:forum_reply).permit(:body)
+    end
+
+    def add_forum_thread_breadcrumbs
+        add_breadcrumb("Forums", "/forums")
+        add_breadcrumb(@forum_thread.forum.title, forum_path(@forum_thread.forum))
+        add_breadcrumb(@forum_thread.title)
     end
 end

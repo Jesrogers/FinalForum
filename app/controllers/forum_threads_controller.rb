@@ -6,6 +6,8 @@ class ForumThreadsController < ApplicationController
     def new
         @forum_thread = @forum.forum_threads.build
         authorize! :create, @forum_thread
+
+        add_forum_thread_breadcrumbs
     end
 
     def create
@@ -13,9 +15,12 @@ class ForumThreadsController < ApplicationController
         @forum_thread.author_id = current_user.id
         authorize! :create, @forum_thread
 
+
+
         if @forum_thread.save
             redirect_to forum_thread_path(@forum_thread)
         else
+            add_forum_thread_breadcrumbs
             render :new
         end
     end
@@ -23,18 +28,19 @@ class ForumThreadsController < ApplicationController
     def show
         @forum_thread = ForumThread.find(params[:id])
 
-        add_breadcrumb("Forums", "/forums")
-        add_breadcrumb(@forum_thread.forum.title, forum_path(@forum_thread.forum))
-        add_breadcrumb(@forum_thread.title)
+        add_forum_thread_breadcrumbs
     end
 
     def edit
+        @forum_thread = ForumThread.find(params[:id])
+        add_forum_thread_breadcrumbs
     end
 
     def update
         if @forum_thread.update(forum_thread_params)
             redirect_to forum_thread_path(@forum_thread)
         else
+            add_forum_thread_breadcrumbs
             render :edit
         end
     end
@@ -56,5 +62,11 @@ class ForumThreadsController < ApplicationController
         else
             params.require(:forum_thread).permit(:title, :body)
         end
+    end
+
+    def add_forum_thread_breadcrumbs
+        add_breadcrumb("Forums", "/forums")
+        add_breadcrumb(@forum_thread.forum.title, forum_path(@forum_thread.forum))
+        add_breadcrumb(@forum_thread.title)  
     end
 end
