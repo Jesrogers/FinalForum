@@ -12,6 +12,10 @@ class ForumRepliesController < ApplicationController
             @forum_thread.update(updated_at: DateTime.now)
             redirect_to forum_thread_path(@forum_thread)
         else
+            add_breadcrumb("Forums", "/forums")
+            add_breadcrumb(@forum_thread.forum.title, forum_path(@forum_thread.forum))
+            add_breadcrumb(@forum_thread.title)
+            
             @reply_error = true
             flash.now[:alert] = "Error while posting reply"
             render "forum_threads/show"
