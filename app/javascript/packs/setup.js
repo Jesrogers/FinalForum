@@ -9,6 +9,11 @@ import {
 
 const SETUP = {
     init() {
+        this.onTurbolinksLoad();
+        this.beforeTurbolinksCache();
+    },
+
+    onTurbolinksLoad() {
         document.addEventListener('turbolinks:load', () => {
             this.mobileMenuTrigger();
 
@@ -19,7 +24,14 @@ const SETUP = {
             if (tabs.length) {
                 this.tabEventListeners();
             }
+        });
+    },
 
+    beforeTurbolinksCache() {
+        document.addEventListener('turbolinks:before-cache', () => {
+            if (!document.querySelector('.home')) {
+                this.editorCacheCheck();
+            }
         });
     },
 
@@ -52,6 +64,12 @@ const SETUP = {
                 target.classList.add('active');
             });
         });
+    },
+
+    editorCacheCheck() {
+        for (const name in CKEDITOR.instances) {
+            CKEDITOR.instances[name].destroy();
+        }
     }
 }
 
