@@ -10,19 +10,22 @@
 
         > a {
             display: flex;
-            margin-right: 2em;
         }
         
     }
 
     &__logo {
         height: 2.5rem;
+
+        @include breakpoint(600px) {
+            height: 3.25rem;
+        }
     }
 
     .nav {
         display: none;
 
-        @include breakpoint(700px) {
+        @include breakpoint(800px) {
             display: block;
         }
 
@@ -87,7 +90,7 @@
             transition: all .25s;
         }
 
-        @include breakpoint(700px) {
+        @include breakpoint(800px) {
             display: none;
         }
 
