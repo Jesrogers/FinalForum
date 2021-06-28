@@ -12,7 +12,7 @@ module FinalForum
     config.load_defaults 6.1
     config.exceptions_app = self.routes
 
-    config.action_view.sanitized_allowed_tags = ['p', 'strong', 'em', 'a', 'img', 'blockquote', 'hr', 'ul', 'ol', 'li']
+    config.action_view.sanitized_allowed_tags = ['p', 'strong', 'em', 'a', 'img', 'blockquote', 'hr', 'ul', 'ol', 'li', 'br']
     config.action_view.sanitized_allowed_attributes = ['href', 'title', 'style', 'src', 'target', 'id', 'name'] 
 
     # Configuration for the application, engines, and railties goes here.
