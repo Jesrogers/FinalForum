@@ -55,6 +55,10 @@ a {
     }
 }
 
+input {
+    line-height: inherit;
+}
+
 hr {
     margin: 4rem 0;
     border-color: $s1;
