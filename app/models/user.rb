@@ -2,7 +2,7 @@ class User < ApplicationRecord
   validates :biography, length: { maximum: 1200 }
 
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable, :trackable
+         :recoverable, :rememberable, :validatable, :trackable
 
   rolify
 

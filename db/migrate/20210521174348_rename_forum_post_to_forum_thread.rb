@@ -3,6 +3,6 @@ class RenameForumPostToForumThread < ActiveRecord::Migration[6.1]
     rename_table :forum_posts, :forum_threads
 
     add_column :forum_threads, :replies, :integer
-    add_column :forum_threads, :last_post, :datetime 
+    add_column :forum_threads, :last_post, :datetime
   end
 end
