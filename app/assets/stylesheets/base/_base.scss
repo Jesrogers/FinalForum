@@ -59,3 +59,14 @@ hr {
     margin: 4rem 0;
     border-color: $s1;
 }
+
+blockquote {
+    padding: 1.25em;
+    color: $color-black;
+    background: rgba($s2, .2);
+    margin-bottom: 1.25rem;
+}
+
+img {
+    max-width: 100%;
+}

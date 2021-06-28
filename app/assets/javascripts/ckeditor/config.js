@@ -33,18 +33,17 @@ CKEDITOR.editorConfig = function (config) {
 
     config.allowedContent = true;
     config.filebrowserUploadMethod = 'form';
-    config.removeDialogTabs = 'image:Upload;image:advanced';
+    config.removeDialogTabs = 'image:Upload;image:advanced;link:upload;link:advanced';
     config.extraPlugins = 'justify';
 
     // Toolbar groups configuration.
     config.toolbar = [
         { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source'] },
+        { name: 'styles', items: ['Format'] },
         { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Undo', 'Redo'] },
         { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'NumberedList', 'BulletedList'] },
+        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['Blockquote', 'NumberedList', 'BulletedList'] },
         { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
         { name: 'insert', items: ['Image', 'HorizontalRule', 'SpecialChar'] },
-        { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
-
     ];
 };
