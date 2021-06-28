@@ -44,7 +44,7 @@ Deployed at: [https://finalforum.herokuapp.com).
 ## Video Demo and Screenshots
 
 ### Video tour
-<!-- [![video demo](https://i.imgur.com/Pg2N0md.png)](https://www.youtube.com/watch?v=S09ONmMOyGQ) -->
+[![video demo](https://i.imgur.com/yAguM9W.png)](https://www.youtube.com/watch?v=3TK8UvuGRW0)
 
 ### Channels section
 
