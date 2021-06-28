@@ -15,10 +15,10 @@
     }
 
     &__logo {
-        height: 2.5rem;
+        width: 12.5rem;
 
         @include breakpoint(600px) {
-            height: 3.25rem;
+            width: 15.625rem;
         }
     }
 
