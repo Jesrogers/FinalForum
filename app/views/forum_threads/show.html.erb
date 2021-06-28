@@ -34,7 +34,7 @@
             <%= render partial: "forum_threads/forum_post", collection: @forum_thread.forum_replies.where.not(id: nil) %>
         </div>
 
-        <% if user_has_role?(:admin) || (!@forum_thread.locked && !@forum_thread.forum.locked) %>
+        <% if user_has_role?(:admin) || (!@forum_thread.locked && !@forum_thread.forum.locked && user_signed_in?)  %>
             <% if @forum_reply.present? %>
                 <%= render partial: "forum_replies/forum_reply_form", locals: {form_title: "Post Reply", reply_body: @forum_reply.body} %>
             <% else %>
