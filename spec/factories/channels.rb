@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :channel do
-    name { "Employees" }
+    name { "Employee Area" }
     position { 1 }
   end
 end

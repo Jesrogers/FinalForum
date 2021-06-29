@@ -11,7 +11,7 @@
     </div>
     <div class="form__field">
         <%= form.label :position, class: "form__label" %>
-        <%= form.number_field :position, class: "form__input", value: 1 %>
+        <%= form.number_field :position, class: "form__input" %>
         <% channel.errors.full_messages_for(:position).each do |position_error| %>
             <span class="form__error"><%= position_error %></span>
       <% end %>
