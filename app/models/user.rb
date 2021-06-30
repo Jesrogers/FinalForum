@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 15 }
   validates :biography, length: { maximum: 1200 }
 
   devise :database_authenticatable, :registerable,

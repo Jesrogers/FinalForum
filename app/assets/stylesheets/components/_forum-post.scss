@@ -61,6 +61,7 @@
 
         @include breakpoint(700px) {
             flex-direction: column;
+            width: 9.375rem;
             padding-bottom: 0;
         }
     }
@@ -80,6 +81,7 @@
         color: $m3;
         font-size: 1.125rem;
         font-weight: 700;
+        word-wrap: break-word;
         
         a {
             color: inherit;
