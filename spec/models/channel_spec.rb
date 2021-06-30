@@ -2,37 +2,38 @@ require 'rails_helper'
 
 RSpec.describe Channel, type: :model do
   context "when created or updated" do
-    let(:channel) { FactoryBot.create(:channel) }
-
     it "is valid with a name" do
+      channel = FactoryBot.build(:channel)
       expect(channel).to be_valid
     end
 
     it "is not valid without a name" do
-      unnamed_channel = Channel.new(name: nil)
-      expect(unnamed_channel).to_not be_valid
+      channel = Channel.new(name: nil)
+      expect(channel).to_not be_valid
     end
 
     it "is not valid without a position" do
-      positionless_channel = Channel.new(name: "New Channel", position: nil)
-      expect(positionless_channel).to_not be_valid
+      channel = Channel.new(name: "New Channel", position: nil)
+      expect(channel).to_not be_valid
     end
 
     it "is not valid when name is over 40 characters" do
-      long_channel = Channel.new(name: "I am a channel name over 40 characters long")
-      expect(long_channel).to_not be_valid
+      channel = Channel.new(name: "I am a channel name over 40 characters long")
+      expect(channel).to_not be_valid
     end
 
     it "is not valid with a non-integer for position" do
-      integer_channel = Channel.new(name: "Employee Area", position: "z")
-      expect(integer_channel).to_not be_valid
+      channel = Channel.new(name: "Employee Area", position: "z")
+      expect(channel).to_not be_valid
     end
 
     it "generates an appropriately slugged friendlyId" do
+      channel = FactoryBot.create(:channel)
       expect(channel.slug).to eq("employee-area")
     end
 
     it "updates the slugged friendlyId on name change" do
+      channel = FactoryBot.create(:channel)
       channel.update(name: "Secret Channel")
       expect(channel.slug).to eq("secret-channel")
     end

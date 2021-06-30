@@ -2,48 +2,45 @@ require 'rails_helper'
 
 RSpec.describe Forum, type: :model do
   context "when created or updated" do
-    let(:forum) { FactoryBot.create(:forum) }
-
     it "is valid with required attributes" do
+      forum = FactoryBot.create(:forum)
       expect(forum).to be_valid
     end
 
     it "is not valid without a title" do
-      unnamed_forum = FactoryBot.build(:forum, title: nil)
-      expect(unnamed_forum).to_not be_valid
+      forum = FactoryBot.build(:forum, title: nil)
+      expect(forum).to_not be_valid
     end
 
     it "is not valid when title is over 60 characters" do
-      long_forum_title = FactoryBot.build(:forum,
-                                          title: "I am a forum title over 60 characters long. Pretty long right?")
-      expect(long_forum_title).to_not be_valid
+      forum = FactoryBot.build(:forum, title: SecureRandom.hex(61))
+      expect(forum).to_not be_valid
     end
 
     it "is not valid when description is over 120 characters" do
-      long_forum_description = FactoryBot.build(:forum,
-                                                description: "I am a forum title over 120 characters long. Pretty long right? I am a forum title over 120 characters long. Pretty long right?")
-      expect(long_forum_description).to_not be_valid
+      forum = FactoryBot.build(:forum, description: SecureRandom.hex(121))
+      expect(forum).to_not be_valid
     end
 
     it "is not valid without a position" do
-      positionless_forum = FactoryBot.build(:forum, position: nil)
-      expect(positionless_forum).to_not be_valid
+      forum = FactoryBot.build(:forum, position: nil)
+      expect(forum).to_not be_valid
     end
 
     it "is not valid with a non-integer for position" do
-      non_integer_position_forum = FactoryBot.build(:forum, position: "z")
-      expect(non_integer_position_forum).to_not be_valid
+      forum = FactoryBot.build(:forum, position: "z")
+      expect(forum).to_not be_valid
     end
 
     it "generates an appropriately slugged friendlyId" do
-      cool_forum = FactoryBot.create(:forum, title: "Cool Forum")
-      expect(cool_forum.slug).to eq('cool-forum')
+      forum = FactoryBot.create(:forum, title: "Cool Forum")
+      expect(forum.slug).to eq('cool-forum')
     end
 
     it "updates the slugged friendlyId on title change" do
-      cool_forum = FactoryBot.create(:forum, title: "Cool Forum")
-      cool_forum.update(title: "Coolest Forum")
-      expect(cool_forum.slug).to eq("coolest-forum")
+      forum = FactoryBot.create(:forum, title: "Cool Forum")
+      forum.update(title: "Coolest Forum")
+      expect(forum.slug).to eq("coolest-forum")
     end
   end
 
