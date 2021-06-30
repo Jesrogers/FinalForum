@@ -12,35 +12,25 @@ RSpec.describe ForumReply, type: :model do
             expect(reply).to be_invalid
         end
 
-        # it "is invalid when title is over 100 characters" do
-        #     thread = FactoryBot.build(:forum_thread, title: SecureRandom.hex(101))
-        #     expect(thread).to be_invalid
-        # end
+        it "is invalid when the body is under 20 characters" do
+            reply = FactoryBot.build(:forum_reply, body: "Short reply")
+            expect(reply).to be_invalid
+        end
 
-        # it "is invalid without a body" do
-        #     thread = FactoryBot.build(:forum_thread, body: "")
-        #     expect(thread).to be_invalid
-        # end
+        it "is invalid when the body is over 20000 characters" do
+            reply = FactoryBot.build(:forum_reply, body: SecureRandom.hex(20001))
+            expect(reply).to be_invalid
+        end
 
-        # it "is invalid when body is under 20 characters" do
-        #     thread = FactoryBot.build(:forum_thread, body: "Short body")
-        #     expect(thread).to be_invalid
-        # end
-
-        # it "is invalid when body is over 20000 characters" do
-        #     thread = FactoryBot.build(:forum_thread, title: SecureRandom.hex(20001))
-        #     expect(thread).to be_invalid
-        # end
-
-        # it "generates an appropriately slugged friendlyId" do
-        #     thread = FactoryBot.create(:forum_thread, title: "Cool Thread")
-        #     expect(thread.slug).to eq('cool-thread')
-        #   end
+        it "generates an appropriately slugged friendlyId" do
+            reply = FactoryBot.create(:forum_thread, title: "Cool reply")
+            expect(reply.slug).to eq('cool-reply')
+          end
       
-        # it "updates the slugged friendlyId on title change" do
-        #     thread = FactoryBot.create(:forum_thread, title: "Cool Thread")
-        #     thread.update(title: "Coolest Thread")
-        #     expect(thread.slug).to eq("coolest-thread")
-        # end
+        it "updates the slugged friendlyId on body change" do
+            reply = FactoryBot.create(:forum_thread, title: "Cool reply")
+            reply.update(title: "Coolest reply")
+            expect(reply.slug).to eq("coolest-reply")
+        end
     end    
 end
