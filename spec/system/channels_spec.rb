@@ -52,6 +52,20 @@ RSpec.describe "Channels", type: :system do
       visit new_channel_path
       expect(page).to have_text("403 Forbidden")
     end
+
+    it "doesn't allow for channels to be edited" do
+      channel = FactoryBot.create(:channel, name: "Employees")
+      user = FactoryBot.create(:user)
+
+      sign_in user
+
+      visit root_path
+      click_link "Forums"
+      expect(page).to_not have_link(href: "/channels/employees/edit")
+
+      visit edit_channel_path(channel)
+      expect(page).to have_text("403 Forbidden")
+    end
   end
 
   context "as a logged in admin" do
