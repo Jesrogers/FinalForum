@@ -77,6 +77,21 @@ RSpec.describe "Channels", type: :system do
       expect(page).to have_link(href: "/channels/employees")
     end
 
+    it "renders new page with validation errors" do
+      sign_in admin
+
+      visit root_path
+      click_link "Forums"
+
+      click_link "Create Channel"
+
+      fill_in "Name", with: "I am a channel name over 40 characters long"
+      fill_in "Position", with: 1
+      click_button "Submit"
+
+      expect(page).to have_text("Name is too long")
+    end
+
     it "allows for channels to be updated" do
       channel = FactoryBot.create(:channel, name: "Employees")
 
@@ -100,7 +115,7 @@ RSpec.describe "Channels", type: :system do
       expect(page).to have_link(href: "/channels/guests")
     end
 
-    it "renders edit page with invalid input" do
+    it "renders edit page with validation errors" do
       channel = FactoryBot.create(:channel, name: "Employees")
 
       sign_in admin
@@ -114,9 +129,6 @@ RSpec.describe "Channels", type: :system do
       fill_in "Position", with: 2
       click_button "Submit"
 
-      expect(page).to have_text("Name is too long")
-
-      click_button "Submit"
       expect(page).to have_text("Name is too long")
     end
 
