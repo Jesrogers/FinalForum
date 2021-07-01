@@ -7,5 +7,9 @@ FactoryBot.define do
     trait :with_threads do
       after(:create) { |user| create_list(:forum_thread, 2, author: user) }
     end
+
+    trait :admin do
+      after(:create) { |user| user.add_role(:admin) }
+    end
   end
 end

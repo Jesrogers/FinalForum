@@ -12,10 +12,10 @@
 
     &__avatar {
         @include avatar;
+        margin-right: 1.875rem;
     }
 
     &__username {
-        margin-left: 1.875rem;
         margin-bottom: 0;
         margin-right: auto;
     }
