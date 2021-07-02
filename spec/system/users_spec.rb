@@ -4,21 +4,21 @@ RSpec.describe "Users", type: :system do
   context "as a guest" do
     it "allows for user creation" do
       visit root_path
-      
+
       expect(page).to have_link("Register", href: '/register')
       click_link("Register")
-  
+
       expect(page).to have_field("Email")
       expect(page).to have_field("Username")
       expect(page).to have_field("Password")
       expect(page).to have_field("Password confirmation")
-  
+
       fill_in "Email", with: "test@example.com"
       fill_in "Username", with: "Newbie"
       fill_in "Password", with: "secure123"
       fill_in "Password confirmation", with: "secure123"
       click_button "Submit"
-  
+
       expect(page).to have_current_path("/")
       expect(page).to have_text("Newbie")
       expect(page).to_not have_text("Register")
@@ -28,17 +28,17 @@ RSpec.describe "Users", type: :system do
       user = FactoryBot.create(:user, email: "test@example.com", username: "Newbie", password: "secure123")
 
       visit root_path
-      
+
       expect(page).to have_link("Login", href: '/login')
       click_link("Login")
-  
+
       expect(page).to have_field("Email")
       expect(page).to have_field("Password")
-  
+
       fill_in "Email", with: "test@example.com"
       fill_in "Password", with: "secure123"
       click_button "Submit"
-  
+
       expect(page).to have_current_path("/")
       expect(page).to have_text("Signed in successfully.")
       expect(page).to have_text("Newbie")
@@ -50,10 +50,10 @@ RSpec.describe "Users", type: :system do
     let(:user) { FactoryBot.create(:user, email: "test@example.com", username: "Newbie", password: "secure123") }
     it "allows for logout" do
       sign_in user
-      
+
       visit root_path
       expect(page).to have_link("Logout", href: '/logout')
-      
+
       click_link("Logout")
       expect(page).to have_current_path("/")
       expect(page).to have_text("Signed out successfully.")
@@ -77,7 +77,7 @@ RSpec.describe "Users", type: :system do
       fill_in_ckeditor("user_biography", with: "I like long walks on the beach")
 
       click_button("Submit", match: :first)
-      
+
       expect(page).to have_current_path("/users/pro")
       expect(page).to have_text("Pro")
       expect(page).to have_text("I like long walks on the beach")
@@ -94,7 +94,7 @@ RSpec.describe "Users", type: :system do
       visit root_path
       click_link("Newbie")
       click_link("Edit Profile")
-      
+
       expect(page).to have_field("Password", with: "")
       expect(page).to have_field("Password confirmation", with: "")
       expect(page).to have_field("Current password", with: "")
@@ -109,11 +109,10 @@ RSpec.describe "Users", type: :system do
       click_link("Logout")
       click_link("Login")
 
-
       fill_in "Email", with: "test@example.com"
       fill_in "Password", with: "megasecure123"
       click_button "Submit"
-  
+
       expect(page).to have_current_path("/")
       expect(page).to have_text("Signed in successfully.")
     end
@@ -124,7 +123,7 @@ RSpec.describe "Users", type: :system do
       visit root_path
       click_link("Newbie")
       click_link("Edit Profile")
-      
+
       fill_in "Password", with: "megasecure123"
       fill_in "Password confirmation", with: "megasecure123"
 

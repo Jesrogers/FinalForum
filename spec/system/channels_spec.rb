@@ -125,7 +125,7 @@ RSpec.describe "Channels", type: :system do
       click_button "Submit"
 
       expect(page).to have_current_path("/forums")
-      expect(page).to have_text(/Guests/i)      
+      expect(page).to have_text(/Guests/i)
       expect(page).to have_link(href: "/channels/guests")
     end
 
@@ -157,11 +157,11 @@ RSpec.describe "Channels", type: :system do
 
       within(".channel") do
         accept_confirm do
-          find("[data-method='delete']").click()          
+          find("[data-method='delete']").click()
         end
       end
 
-      expect(page).to_not have_text(/Employees/i)      
+      expect(page).to_not have_text(/Employees/i)
       expect(page).to_not have_link(href: "/channels/employees")
     end
   end
