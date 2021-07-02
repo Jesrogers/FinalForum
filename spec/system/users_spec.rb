@@ -74,15 +74,18 @@ RSpec.describe "Users", type: :system do
 
       fill_in "Email", with: "testing@example.com"
       fill_in "Username", with: "Pro"
+      fill_in_ckeditor("user_biography", with: "I like long walks on the beach")
 
       click_button("Submit", match: :first)
       
       expect(page).to have_current_path("/users/pro")
       expect(page).to have_text("Pro")
+      expect(page).to have_text("I like long walks on the beach")
 
       click_link("Edit Profile")
       expect(page).to have_field("Email", with: "testing@example.com")
       expect(page).to have_field("Username", with: "Pro")
+      expect(get_ckeditor_text("user_biography")).to eq("I like long walks on the beach")
     end
 
     it "allows for password updating" do
@@ -130,4 +133,17 @@ RSpec.describe "Users", type: :system do
     end
   end
 
+  def fill_in_ckeditor(locator, options)
+    content = options.fetch(:with).to_json
+    page.execute_script <<-SCRIPT
+      CKEDITOR.instances['#{locator}'].setData(#{content});
+      document.querySelector('textarea##{locator}').textContent = #{content};
+    SCRIPT
+  end
+
+  def get_ckeditor_text(locator)
+    page.execute_script <<-SCRIPT
+      return CKEDITOR.instances['#{locator}'].editable().getText();
+    SCRIPT
+  end
 end
