@@ -131,18 +131,4 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_text("Current password can't be blank")
     end
   end
-
-  def fill_in_ckeditor(locator, options)
-    content = options.fetch(:with).to_json
-    page.execute_script <<-SCRIPT
-      CKEDITOR.instances['#{locator}'].setData(#{content});
-      document.querySelector('textarea##{locator}').textContent = #{content};
-    SCRIPT
-  end
-
-  def get_ckeditor_text(locator)
-    page.execute_script <<-SCRIPT
-      return CKEDITOR.instances['#{locator}'].editable().getText();
-    SCRIPT
-  end
 end
