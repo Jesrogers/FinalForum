@@ -5,6 +5,10 @@ FactoryBot.define do
     association :forum
     association :author, factory: :user
 
+    trait :locked do
+      locked { true }
+    end
+
     trait :with_replies do
       after(:create) { |forum_thread| create_list(:forum_reply, 2, forum_thread: forum_thread) }
     end

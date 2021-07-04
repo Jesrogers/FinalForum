@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "ForumThreads", type: :system do
   context "as a guest" do
-    let!(:thread) { FactoryBot.create(:forum_thread, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!") }
     it "displays relevant thread content on show page" do
+      thread = FactoryBot.create(:forum_thread, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
       visit root_path
       click_link "Forums"
-      click_link(href: "/forums/#{thread.forum.slug}")
 
+      click_link(href: "/forums/#{thread.forum.slug}")
       expect(page).to have_text("This is a test thread")
       expect(page).to have_link(href: forum_thread_path(thread))
 
@@ -19,14 +19,175 @@ RSpec.describe "ForumThreads", type: :system do
       expect(page).to have_text(thread.created_at.strftime('%Y-%m-%d, %I:%M %p'))
     end
 
-    # it "doesn't allow for threads to be created" do
+    it "doesn't allow for threads to be created" do
+      forum = FactoryBot.create(:forum)
 
-    # end
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{forum.slug}")
+      expect(page).to_not have_link("New Thread", href: new_forum_forum_thread_path(forum))
+
+      visit new_forum_forum_thread_path(forum)
+      expect(page).to have_current_path("/login")
+      expect(page).to have_text("Login")
+    end
   end
 
   context "as a logged in user" do
+    let(:user) { FactoryBot.create(:user) }
+    let(:forum) { FactoryBot.create(:forum) }
+    let(:locked_forum) { FactoryBot.create(:forum, :locked) }
+
+    it "allows for threads to be created when forum is unlocked" do
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{forum.slug}")
+      expect(page).to have_link("New Thread", href: new_forum_forum_thread_path(forum.id))
+
+      visit new_forum_forum_thread_path(forum)
+      expect(page).to have_field("Title")
+      expect(page).to have_css("#cke_forum_thread_body")
+
+      fill_in "Title", with: "I am a brand new thread!"
+      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
+      click_button "Submit"
+
+      expect(page).to have_current_path("/threads/i-am-a-brand-new-thread")
+      expect(page).to have_text("I am a brand new thread!")
+      expect(page).to have_text("I like long walks on the beach")
+    end
+
+    it "allows for editing of own threads when forum and thread are unlocked" do
+      thread = FactoryBot.create(:forum_thread, author: user, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
+      
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{thread.forum.slug}")
+      click_link(href: forum_thread_path(thread))
+      expect(page).to have_link("Edit", href: edit_forum_thread_path(thread))
+
+      click_link("Edit", href: edit_forum_thread_path(thread))
+      expect(page).to have_field("Title", with: "This is a test thread")
+      expect(get_ckeditor_text("forum_thread_body")).to eq("Hello, please ignore this thread. It is being used for testing. Thanks!")
+
+      fill_in("Title", with: "This is a totally real thread")
+      fill_in_ckeditor("forum_thread_body", with: "Don't ignore me please. It will hurt my feelings.")
+      click_button("Submit")
+
+      thread.reload
+      expect(page).to have_current_path(forum_thread_path(thread))
+      expect(page).to have_text("This is a totally real thread")
+      expect(page).to have_text("Don't ignore me please. It will hurt my feelings.")
+    end
+
+    it "allows for deletion of own thread when forum and thread are unlocked" do
+      thread = FactoryBot.create(:forum_thread, author: user, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
+
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{thread.forum.slug}")
+      click_link(href: forum_thread_path(thread))
+      expect(page).to have_link("Delete", href: forum_thread_path(thread))
+
+      accept_confirm do
+        click_link("Delete", href: forum_thread_path(thread))
+      end
+
+      expect(page).to have_current_path(forum_path(thread.forum))
+      expect(page).to_not have_text("This is a test thread")
+    end
+
+    it "doesn't allow for the editing of another's thread" do
+      user2 = FactoryBot.create(:user)
+      thread = FactoryBot.create(:forum_thread, author: user2, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
+
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{thread.forum.slug}")
+      click_link(href: forum_thread_path(thread))
+      expect(page).to_not have_link("Edit", href: forum_thread_path(thread))
+
+      visit edit_forum_thread_path(thread)
+      expect(page).to have_text("403 Forbidden")
+    end
+
+    it "doesn't allow for editing of own threads when forum is locked" do
+      thread = FactoryBot.create(:forum_thread, forum: locked_forum, author: user, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
+      
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{locked_forum.slug}")
+      click_link(href: forum_thread_path(thread))
+      expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
+      expect(page).to_not have_link("Edit", href: forum_thread_path(thread))
+
+      visit edit_forum_thread_path(thread)
+      expect(page).to have_text("403 Forbidden")
+    end
+
+    it "doesn't allow for deletion of own thread when forum is locked" do
+      thread = FactoryBot.create(:forum_thread, forum: locked_forum, author: user, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
+      
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{locked_forum.slug}")
+      click_link(href: forum_thread_path(thread))
+      expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
+      expect(page).to_not have_link("Delete", href: forum_thread_path(thread))
+    end
+
+    it "doesn't allow for editing of own thread when thread is locked" do
+      locked_thread = FactoryBot.create(:forum_thread, :locked, author: user, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")      
+      
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{locked_thread.forum.slug}")
+      click_link(href: forum_thread_path(locked_thread))
+
+      expect(page).to have_text("This thread is locked. Feel free to browse, but interaction is disabled.")
+      expect(page).to_not have_link("Edit", href: forum_thread_path(locked_thread))
+
+      visit edit_forum_thread_path(locked_thread)
+      expect(page).to have_text("403 Forbidden")
+    end
+
+    it "doesn't allow for deletion of own thread when thread is locked" do
+      locked_thread = FactoryBot.create(:forum_thread, :locked, author: user, title: "This is a test thread", body: "Hello, please ignore this thread. It is being used for testing. Thanks!")      
+      
+      sign_in user
+      visit root_path
+      click_link "Forums"
+      click_link(href: "/forums/#{locked_thread.forum.slug}")
+      click_link(href: forum_thread_path(locked_thread))
+
+      expect(page).to have_text("This thread is locked. Feel free to browse, but interaction is disabled.")
+      expect(page).to_not have_link("Delete", href: forum_thread_path(locked_thread))
+    end
+
+
   end
 
   context "as a logged in admin" do
+  end
+
+  def fill_in_ckeditor(locator, options)
+    content = options.fetch(:with).to_json
+    page.execute_script <<-SCRIPT
+      CKEDITOR.instances['#{locator}'].setData(#{content});
+      document.querySelector('textarea##{locator}').textContent = #{content};
+    SCRIPT
+  end
+
+  def get_ckeditor_text(locator)
+    page.execute_script <<-SCRIPT
+      return CKEDITOR.instances['#{locator}'].editable().getText();
+    SCRIPT
   end
 end
