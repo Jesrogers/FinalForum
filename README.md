@@ -8,7 +8,7 @@ Deployed at: [https://finalforum.herokuapp.com).
 
 1. Account creation and login
 2. Forum architecture:
-   * Channels serve as "categories" that forums belong to
+   * Channels serve as categories that forums belong to
    * Forums act as containers for related threads
    * Threads are the topics that users can post
    * Users can reply to threads
@@ -18,8 +18,8 @@ Deployed at: [https://finalforum.herokuapp.com).
    * Admins can lock forums and threads, preventing regular users from creating / editing affected threads & replies.
    * Admins can pin threads, causing them to appear first in the list
    * Regular users can create threads and replies in unlocked forums / threads
-   * Regular users can only edit their own threads and replies
-4. Each user has their own profile page that aggregates data related to them (has a modifiable "biography" section too)
+   * Regular users can only edit and delete their own threads and replies
+4. Each user has their own profile page that aggregates data related to them (has a modifiable biography section too)
 5. Other things of note:
    * Mobile friendly
    * "Pretty" URLs for resources
