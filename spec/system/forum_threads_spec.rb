@@ -19,17 +19,6 @@ RSpec.describe "ForumThreads", type: :system do
       expect(page).to have_text(thread.author.created_at.strftime('%b %Y'))
       expect(page).to have_text(thread.created_at.strftime('%Y-%m-%d, %I:%M %p'))
     end
-
-    it "doesn't allow for threads to be created" do
-      forum = FactoryBot.create(:forum)
-
-      go_to_forum(forum)
-      expect(page).to_not have_link("New Thread", href: new_forum_forum_thread_path(forum))
-
-      visit new_forum_forum_thread_path(forum)
-      expect(page).to have_current_path("/login")
-      expect(page).to have_text("Login")
-    end
   end
 
   context "as a logged in user" do
@@ -136,17 +125,6 @@ RSpec.describe "ForumThreads", type: :system do
       expect(page).to have_text("403 Forbidden")
     end
 
-    it "doesn't allow for deletion of own thread when forum is locked" do
-      thread = FactoryBot.create(:forum_thread, forum: locked_forum, author: user, title: "This is a test thread",
-                                                body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
-
-      sign_in user
-      go_to_forum(locked_forum)
-      click_link(href: forum_thread_path(thread))
-      expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
-      expect(page).to_not have_link("Delete", href: forum_thread_path(thread))
-    end
-
     it "doesn't allow for editing of own thread when thread is locked" do
       locked_thread = FactoryBot.create(:forum_thread, :locked, author: user, title: "This is a test thread",
                                                                 body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
@@ -160,53 +138,6 @@ RSpec.describe "ForumThreads", type: :system do
 
       visit edit_forum_thread_path(locked_thread)
       expect(page).to have_text("403 Forbidden")
-    end
-
-    it "doesn't allow for deletion of own thread when thread is locked" do
-      locked_thread = FactoryBot.create(:forum_thread, :locked, author: user, title: "This is a test thread",
-                                                                body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
-
-      sign_in user
-      go_to_forum(locked_thread.forum)
-      click_link(href: forum_thread_path(locked_thread))
-
-      expect(page).to have_text("This thread is locked. Feel free to browse, but interaction is disabled.")
-      expect(page).to_not have_link("Delete", href: forum_thread_path(locked_thread))
-    end
-
-    it "renders new page with validation errors" do
-      sign_in user
-      go_to_forum(forum)
-      expect(page).to have_link("New Thread", href: new_forum_forum_thread_path(forum.id))
-
-      click_link("New Thread", href: new_forum_forum_thread_path(forum.id))
-
-      fill_in "Title",
-              with: "I am a brand new thread! I am a brand new thread! I am a brand new thread! I am a brand new thread! Hello!"
-      fill_in_ckeditor('forum_thread_body', with: "Hello")
-      click_button "Submit"
-
-      expect(page).to have_text("Title is too long (maximum is 100 characters)")
-      expect(page).to have_text("Body is too short (minimum is 20 characters)")
-    end
-
-    it "renders edit page with validation errors" do
-      thread = FactoryBot.create(:forum_thread, author: user, title: "This is a test thread",
-                                                body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
-
-      sign_in user
-      go_to_forum(thread.forum)
-      click_link(href: forum_thread_path(thread))
-      expect(page).to have_link("Edit", href: edit_forum_thread_path(thread))
-
-      click_link("Edit", href: edit_forum_thread_path(thread))
-      fill_in("Title",
-              with: "I am a brand new thread! I am a brand new thread! I am a brand new thread! I am a brand new thread! Hello!")
-      fill_in_ckeditor("forum_thread_body", with: "Ignore")
-      click_button("Submit")
-
-      expect(page).to have_text("Title is too long (maximum is 100 characters)")
-      expect(page).to have_text("Body is too short (minimum is 20 characters)")
     end
   end
 

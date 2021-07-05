@@ -2,28 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Forums", type: :system do
   context "as a guest" do
-    it "doesn't allow for forums to be created" do
-      visit root_path
-      click_link "Forums"
-      expect(page).to_not have_link("Add Forum", href: new_forum_path)
-
-      visit new_forum_path
-      expect(page).to have_current_path("/login")
-    end
-
-    it "doesn't allow for forums to be updated" do
-      forum = FactoryBot.create(:forum, title: "General Discussion")
-
-      visit root_path
-      click_link "Forums"
-      expect(page).to have_text(/General Discussion/i)
-      expect(page).to have_link(href: "/forums/general-discussion")
-      expect(page).to_not have_link(href: "/forums/general-discussion/edit")
-
-      visit edit_forum_path(forum)
-      expect(page).to have_current_path("/login")
-    end
-
     it "displays child threads on show page" do
       forum = FactoryBot.create(:forum, :with_threads)
 
@@ -97,24 +75,6 @@ RSpec.describe "Forums", type: :system do
       end
     end
 
-    it "renders new page with validation errors" do
-      sign_in admin
-
-      visit root_path
-      click_link "Forums"
-      click_link(href: "#{new_forum_path}?channel=employees")
-
-      fill_in "Title", with: "I am a forum name over 60 characters long. Look at me gooooo!"
-      fill_in "Description",
-              with: "I am a forum description over 120 characters long. Look at me gooooo! I am a forum description over 120 characters long. Look at me gooooo!"
-      select "Employees", from: "Channel"
-      fill_in "Position", with: 2
-      click_button "Submit"
-
-      expect(page).to have_text(/Title is too long/)
-      expect(page).to have_text(/Description is too long/)
-    end
-
     it "allows for forums to be updated" do
       forum = FactoryBot.create(:forum, title: "General Discussion")
 
@@ -142,24 +102,6 @@ RSpec.describe "Forums", type: :system do
       expect(page).to have_text(/Friends/i)
       expect(page).to have_link(href: "/forums/friends")
       expect(page).to have_selector(".fa-lock")
-    end
-
-    it "renders edit page with validation errors" do
-      forum = FactoryBot.create(:forum, title: "General Discussion")
-
-      sign_in admin
-
-      visit root_path
-      click_link "Forums"
-      click_link(href: "/forums/general-discussion/edit")
-
-      fill_in "Title", with: "I am a forum name over 60 characters long. Look at me gooooo!"
-      fill_in "Description",
-              with: "I am a forum description over 120 characters long. Look at me gooooo! I am a forum description over 120 characters long. Look at me gooooo!"
-      click_button "Submit"
-
-      expect(page).to have_text(/Title is too long/i)
-      expect(page).to have_text(/Description is too long/i)
     end
 
     it "allows for forums to be deleted" do
