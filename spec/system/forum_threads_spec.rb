@@ -184,5 +184,64 @@ RSpec.describe "ForumThreads", type: :system do
       expect(page).to have_text("I am a brand new thread!")
       expect(page).to have_text("I like long walks on the beach")
     end
+
+    it "allows for threads to be edited when forum is locked" do
+      thread = FactoryBot.create(:forum_thread, forum: locked_forum)
+
+      sign_in admin_user
+      go_to_forum(locked_forum)
+      click_link(href: forum_thread_path(thread))
+
+      expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
+      expect(page).to have_link("Edit", href: edit_forum_thread_path(thread))
+
+      click_link("Edit", href: edit_forum_thread_path(thread))
+      fill_in "Title", with: "I am a brand new thread!"
+      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
+      click_button "Submit"
+
+      expect(page).to have_current_path("/threads/i-am-a-brand-new-thread")
+      expect(page).to have_text("I am a brand new thread!")
+      expect(page).to have_text("I like long walks on the beach")
+    end
+
+    it "allows for threads to be deleted when thread is locked" do
+      thread = FactoryBot.create(:forum_thread, :locked, title: "I am a brand new thread!")
+
+      sign_in admin_user
+      go_to_forum(thread.forum)
+      click_link(href: forum_thread_path(thread))
+
+      expect(page).to have_text("This thread is locked. Feel free to browse, but interaction is disabled.")
+      expect(page).to have_link("Delete", href: forum_thread_path(thread))
+
+      accept_confirm do
+        click_link("Delete", href: forum_thread_path(thread))
+      end
+
+      expect(page).to have_current_path(forum_path(thread.forum))
+      expect(page).to_not have_text("I am a brand new thread!")
+    end
+
+    it "allows for other user's threads to be edited when forum and thread are locked" do
+      user2 = FactoryBot.create(:user)
+      thread = FactoryBot.create(:forum_thread, :locked, author: user2, forum: locked_forum)
+
+      sign_in admin_user
+      go_to_forum(thread.forum)
+      click_link(href: forum_thread_path(thread))
+
+      expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
+      expect(page).to have_link("Edit", href: edit_forum_thread_path(thread.slug))
+
+      click_link("Edit", href: edit_forum_thread_path(thread))
+      fill_in "Title", with: "I am an edited thread!"
+      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
+      click_button "Submit"
+
+      expect(page).to have_current_path("/threads/i-am-an-edited-thread")
+      expect(page).to have_text("I am an edited thread")
+      expect(page).to have_text("I like long walks on the beach")
+    end
   end
 end

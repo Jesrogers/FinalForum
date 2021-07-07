@@ -19,7 +19,7 @@ RSpec.describe "Channels", type: :system do
 
   context "as a logged in user" do
     let(:user) { FactoryBot.create(:user) }
-    
+
     it "doesn't allow for channels to be created" do
       sign_in user
 
