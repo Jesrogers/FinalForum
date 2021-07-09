@@ -6,7 +6,7 @@
                 <%= forum_post.created_at.strftime('%Y-%m-%d, %I:%M %p') %>
         <% end %>
 
-        <% if reply_author?(forum_post) || user_has_role?(:admin) %>
+        <% if can?(:modify, forum_post) %>
             <% if !forum_post.has_attribute?(:title) %>
                 <div class="forum-post__options">
                     <%= link_to edit_forum_reply_path(forum_post) do %>

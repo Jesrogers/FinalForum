@@ -8,11 +8,7 @@ RSpec.describe "ForumThreads", type: :system do
       thread = FactoryBot.create(:forum_thread, title: "This is a test thread",
                                                 body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
 
-      go_to_forum(thread.forum)
-      expect(page).to have_text("This is a test thread")
-      expect(page).to have_link(href: forum_thread_path(thread))
-
-      click_link(href: "/threads/#{thread.slug}")
+      go_to_forum_thread(thread)
 
       expect(page).to have_text("Hello, please ignore this thread. It is being used for testing. Thanks!")
       expect(page).to have_text(thread.author.username)
@@ -26,12 +22,12 @@ RSpec.describe "ForumThreads", type: :system do
     let(:forum) { FactoryBot.create(:forum) }
     let(:locked_forum) { FactoryBot.create(:forum, :locked) }
 
-    it "allows for threads to be created when forum is unlocked" do
+    it "allows for threads to be created when forum and thread are unlocked" do
       sign_in user
       go_to_forum(forum)
       expect(page).to have_link("New Thread", href: new_forum_forum_thread_path(forum.id))
 
-      visit new_forum_forum_thread_path(forum)
+      click_link("New Thread", href: new_forum_forum_thread_path(forum.id))
       expect(page).to have_field("Title")
       expect(page).to have_css("#cke_forum_thread_body")
 
@@ -49,8 +45,7 @@ RSpec.describe "ForumThreads", type: :system do
                                                 body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
 
       sign_in user
-      go_to_forum(thread.forum)
-      click_link(href: forum_thread_path(thread))
+      go_to_forum_thread(thread)
       expect(page).to have_link("Edit", href: edit_forum_thread_path(thread))
 
       click_link("Edit", href: edit_forum_thread_path(thread))
@@ -72,8 +67,7 @@ RSpec.describe "ForumThreads", type: :system do
                                                 body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
 
       sign_in user
-      go_to_forum(thread.forum)
-      click_link(href: forum_thread_path(thread))
+      go_to_forum_thread(thread)
       expect(page).to have_link("Delete", href: forum_thread_path(thread))
 
       accept_confirm do
@@ -90,8 +84,7 @@ RSpec.describe "ForumThreads", type: :system do
                                                 body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
 
       sign_in user
-      go_to_forum(thread.forum)
-      click_link(href: forum_thread_path(thread))
+      go_to_forum_thread(thread)
       expect(page).to_not have_link("Edit", href: forum_thread_path(thread))
 
       visit edit_forum_thread_path(thread)
@@ -116,8 +109,7 @@ RSpec.describe "ForumThreads", type: :system do
                                                 body: "Hello, please ignore this thread. It is being used for testing. Thanks!")
 
       sign_in user
-      go_to_forum(locked_forum)
-      click_link(href: forum_thread_path(thread))
+      go_to_forum_thread(thread)
       expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
       expect(page).to_not have_link("Edit", href: forum_thread_path(thread))
 
@@ -228,8 +220,7 @@ RSpec.describe "ForumThreads", type: :system do
       thread = FactoryBot.create(:forum_thread, :locked, author: user2, forum: locked_forum)
 
       sign_in admin_user
-      go_to_forum(thread.forum)
-      click_link(href: forum_thread_path(thread))
+      go_to_forum_thread(thread)
 
       expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
       expect(page).to have_link("Edit", href: edit_forum_thread_path(thread.slug))
