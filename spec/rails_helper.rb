@@ -1,5 +1,9 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
+  add_filter '/app/channels/'
+  add_filter '/app/jobs/'
+  add_filter '/app/mailers/'
+  add_filter '/app/controllers/errors_controller'
   add_filter '/bin/'
   add_filter '/db/'
   add_filter '/spec/'
