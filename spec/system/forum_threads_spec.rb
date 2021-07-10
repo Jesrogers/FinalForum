@@ -138,25 +138,6 @@ RSpec.describe "ForumThreads", type: :system do
     let(:forum) { FactoryBot.create(:forum) }
     let(:locked_forum) { FactoryBot.create(:forum, :locked) }
 
-    it "allows for threads to be created when forum is unlocked" do
-      sign_in admin_user
-      go_to_forum(forum)
-
-      expect(page).to have_link("New Thread", href: new_forum_forum_thread_path(forum.id))
-
-      visit new_forum_forum_thread_path(forum)
-      expect(page).to have_field("Title")
-      expect(page).to have_css("#cke_forum_thread_body")
-
-      fill_in "Title", with: "I am a brand new thread!"
-      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
-      click_button "Submit"
-
-      expect(page).to have_current_path("/threads/i-am-a-brand-new-thread")
-      expect(page).to have_text("I am a brand new thread!")
-      expect(page).to have_text("I like long walks on the beach")
-    end
-
     it "allows for threads to be created when forum is locked" do
       sign_in admin_user
       go_to_forum(locked_forum)
