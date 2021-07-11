@@ -21,6 +21,7 @@ Deployed at: [https://finalforum.herokuapp.com).
    * Regular users can only edit and delete their own threads and replies
 4. Each user has their own profile page that aggregates data related to them (has a modifiable biography section too)
 5. Other things of note:
+   * Tested via RSpec and Capybara
    * Mobile friendly
    * "Pretty" URLs for resources
    * Dynamic breadcrumb menu on relevant pages
@@ -40,6 +41,7 @@ Deployed at: [https://finalforum.herokuapp.com).
 2. Run `bundle` and `npm install`
 3. Setup database (will need PostgreSQL installed) by running `rails db:setup`
 4. Start the server via `rails s`
+5. May also run tests via `rspec` or `bin/rspec`
 
 ## Video Demo and Screenshots
 
