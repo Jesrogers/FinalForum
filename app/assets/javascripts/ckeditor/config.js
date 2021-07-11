@@ -38,12 +38,12 @@ CKEDITOR.editorConfig = function (config) {
 
     // Toolbar groups configuration.
     config.toolbar = [
-        { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source'] },
+        { name: 'document', groups: ['mode', 'document', 'doctools'] },
         { name: 'styles', items: ['Format'] },
         { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Undo', 'Redo'] },
         { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
         { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['Blockquote', 'NumberedList', 'BulletedList'] },
         { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
-        { name: 'insert', items: ['Image', 'HorizontalRule', 'SpecialChar'] },
+        { name: 'insert', items: ['HorizontalRule', 'SpecialChar'] },
     ];
 };
