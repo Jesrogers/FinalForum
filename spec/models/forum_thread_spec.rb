@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ForumThread, type: :model do
   context "when created or updated" do
@@ -34,7 +34,7 @@ RSpec.describe ForumThread, type: :model do
 
     it "generates an appropriately slugged friendlyId" do
       thread = FactoryBot.create(:forum_thread, title: "Cool Thread")
-      expect(thread.slug).to eq('cool-thread')
+      expect(thread.slug).to eq("cool-thread")
     end
 
     it "updates the slugged friendlyId on title change" do

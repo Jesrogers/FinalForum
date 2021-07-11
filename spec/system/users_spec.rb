@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Users", type: :system do
   context "as a guest" do
     it "allows for user creation" do
       visit root_path
 
-      expect(page).to have_link("Register", href: '/register')
+      expect(page).to have_link("Register", href: "/register")
       click_link("Register")
 
       expect(page).to have_field("Email")
@@ -29,7 +29,7 @@ RSpec.describe "Users", type: :system do
 
       visit root_path
 
-      expect(page).to have_link("Login", href: '/login')
+      expect(page).to have_link("Login", href: "/login")
       click_link("Login")
 
       expect(page).to have_field("Email")
@@ -52,7 +52,7 @@ RSpec.describe "Users", type: :system do
       sign_in user
 
       visit root_path
-      expect(page).to have_link("Logout", href: '/logout')
+      expect(page).to have_link("Logout", href: "/logout")
 
       click_link("Logout")
       expect(page).to have_current_path("/")

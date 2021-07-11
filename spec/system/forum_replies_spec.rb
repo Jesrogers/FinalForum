@@ -1,6 +1,6 @@
-require 'rails_helper'
-require './spec/support/forum_thread_helper'
-require './spec/support/cke_helper'
+require "rails_helper"
+require "./spec/support/forum_thread_helper"
+require "./spec/support/cke_helper"
 
 RSpec.describe "ForumReplies", type: :system do
   let(:thread) { FactoryBot.create(:forum_thread) }
@@ -22,7 +22,7 @@ RSpec.describe "ForumReplies", type: :system do
     let(:user) { FactoryBot.create(:user) }
     let(:thread) { FactoryBot.create(:forum_thread) }
     let(:locked_forum) { FactoryBot.create(:forum, :locked) }
-    let(:locked_thread) { FactoryBot.create(:forum_thread, :locked)}
+    let(:locked_thread) { FactoryBot.create(:forum_thread, :locked) }
     let(:locked_thread_locked_forum) { FactoryBot.create(:forum_thread, :locked, forum: locked_forum) }
 
     it "allows for replies to be created when forum and thread are unlocked" do
@@ -30,7 +30,7 @@ RSpec.describe "ForumReplies", type: :system do
       go_to_forum_thread(thread)
       expect(page).to have_css("#cke_forum_reply_body")
 
-      fill_in_ckeditor('forum_reply_body', with: "Hello, nice to meet you!")
+      fill_in_ckeditor("forum_reply_body", with: "Hello, nice to meet you!")
       click_button "Submit"
 
       expect(page).to have_current_path(forum_thread_path(thread))
@@ -48,7 +48,7 @@ RSpec.describe "ForumReplies", type: :system do
       expect(page).to have_text("Edit Reply")
       expect(get_ckeditor_text("forum_reply_body")).to eq("This is a test reply!")
 
-      fill_in_ckeditor('forum_reply_body', with: "I am an edited reply!")
+      fill_in_ckeditor("forum_reply_body", with: "I am an edited reply!")
       click_button("Submit")
 
       expect(page).to have_current_path(forum_thread_path(reply.forum_thread))
@@ -87,7 +87,7 @@ RSpec.describe "ForumReplies", type: :system do
 
       sign_in user
       go_to_forum_thread(thread)
-      
+
       expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
       expect(page).to_not have_css("#cke_forum_reply_body")
     end
@@ -99,7 +99,7 @@ RSpec.describe "ForumReplies", type: :system do
       go_to_forum_thread(locked_thread_locked_forum)
       expect(page).to have_text("This forum is locked. Feel free to browse, but interaction is disabled.")
       expect(page).to_not have_link(href: edit_forum_reply_path(reply))
-      
+
       visit edit_forum_reply_path(reply)
       expect(page).to have_text("403 Forbidden")
     end
@@ -122,7 +122,7 @@ RSpec.describe "ForumReplies", type: :system do
     let(:user) { FactoryBot.create(:user) }
     let(:thread) { FactoryBot.create(:forum_thread) }
     let(:locked_forum) { FactoryBot.create(:forum, :locked) }
-    let(:locked_thread) { FactoryBot.create(:forum_thread, :locked)}
+    let(:locked_thread) { FactoryBot.create(:forum_thread, :locked) }
     let(:locked_thread_locked_forum) { FactoryBot.create(:forum_thread, :locked, forum: locked_forum) }
 
     it "allows for replies to be created when thread is locked" do
@@ -130,7 +130,7 @@ RSpec.describe "ForumReplies", type: :system do
       go_to_forum_thread(locked_thread)
       expect(page).to have_css("#cke_forum_reply_body")
 
-      fill_in_ckeditor('forum_reply_body', with: "Hello, nice to meet you!")
+      fill_in_ckeditor("forum_reply_body", with: "Hello, nice to meet you!")
       click_button "Submit"
 
       expect(page).to have_current_path(forum_thread_path(locked_thread))
@@ -138,7 +138,8 @@ RSpec.describe "ForumReplies", type: :system do
     end
 
     it "allows for editing of own replies when forum and thread are locked" do
-      reply = FactoryBot.create(:forum_reply, author: admin_user, forum_thread: locked_thread_locked_forum, body: "This is a test reply!")
+      reply = FactoryBot.create(:forum_reply, author: admin_user, forum_thread: locked_thread_locked_forum,
+                                              body: "This is a test reply!")
 
       sign_in admin_user
       go_to_forum_thread(reply.forum_thread)
@@ -148,7 +149,7 @@ RSpec.describe "ForumReplies", type: :system do
       expect(page).to have_text("Edit Reply")
       expect(get_ckeditor_text("forum_reply_body")).to eq("This is a test reply!")
 
-      fill_in_ckeditor('forum_reply_body', with: "I am an edited reply!")
+      fill_in_ckeditor("forum_reply_body", with: "I am an edited reply!")
       click_button("Submit")
 
       expect(page).to have_current_path(forum_thread_path(reply.forum_thread))
@@ -170,9 +171,10 @@ RSpec.describe "ForumReplies", type: :system do
       expect(page).to have_current_path(forum_thread_path(reply.forum_thread))
       expect(page).to_not have_text(reply.body)
     end
-    
+
     it "allows for editing of other's replies when forum and thread are locked" do
-      reply = FactoryBot.create(:forum_reply, author: user, forum_thread: locked_thread_locked_forum, body: "This is a test reply!")
+      reply = FactoryBot.create(:forum_reply, author: user, forum_thread: locked_thread_locked_forum,
+                                              body: "This is a test reply!")
 
       sign_in admin_user
       go_to_forum_thread(reply.forum_thread)
@@ -182,7 +184,7 @@ RSpec.describe "ForumReplies", type: :system do
       expect(page).to have_text("Edit Reply")
       expect(get_ckeditor_text("forum_reply_body")).to eq("This is a test reply!")
 
-      fill_in_ckeditor('forum_reply_body', with: "I am an edited reply!")
+      fill_in_ckeditor("forum_reply_body", with: "I am an edited reply!")
       click_button("Submit")
 
       expect(page).to have_current_path(forum_thread_path(reply.forum_thread))

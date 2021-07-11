@@ -16,7 +16,7 @@ class ForumsController < ApplicationController
 
   def create
     if @forum.save
-      redirect_to '/forums'
+      redirect_to "/forums"
     else
       @selected_channel = Channel.find(params[:forum][:channel_id])
       render :new
@@ -31,7 +31,7 @@ class ForumsController < ApplicationController
     @selected_channel = Forum.find(params[:id]).channel
 
     if @forum.update(forum_params)
-      redirect_to '/forums'
+      redirect_to "/forums"
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class ForumsController < ApplicationController
 
   def destroy
     @forum.destroy
-    redirect_to '/forums'
+    redirect_to "/forums"
   end
 
   private

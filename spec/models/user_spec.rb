@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   context "when created or updated" do
@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
 
     it "generates an appropriately slugged friendlyId" do
       user = FactoryBot.create(:user, username: "Freaky Freddy")
-      expect(user.slug).to eq('freaky-freddy')
+      expect(user.slug).to eq("freaky-freddy")
     end
 
     it "updates the slugged friendlyId on title change" do

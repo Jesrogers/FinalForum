@@ -10,11 +10,11 @@ module FinalForum
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
 
-    config.action_view.sanitized_allowed_tags = ['p', 'strong', 'em', 'a', 'img', 'blockquote', 'hr', 'ul', 'ol', 'li',
-                                                 'br']
-    config.action_view.sanitized_allowed_attributes = ['href', 'title', 'style', 'src', 'target', 'id', 'name']
+    config.action_view.sanitized_allowed_tags = ["p", "strong", "em", "a", "img", "blockquote", "hr", "ul", "ol", "li",
+                                                 "br"]
+    config.action_view.sanitized_allowed_attributes = ["href", "title", "style", "src", "target", "id", "name"]
 
     config.generators do |g|
       g.test_framework :rspec,

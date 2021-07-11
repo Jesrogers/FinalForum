@@ -15,7 +15,7 @@ class ChannelsController < ApplicationController
 
   def create
     if @channel.save
-      redirect_to '/forums'
+      redirect_to "/forums"
     else
       render :new
     end
@@ -26,7 +26,7 @@ class ChannelsController < ApplicationController
 
   def update
     if @channel.update(channel_params)
-      redirect_to '/forums', notice: "Channel updated."
+      redirect_to "/forums", notice: "Channel updated."
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class ChannelsController < ApplicationController
 
   def destroy
     @channel.destroy
-    redirect_to '/forums', notice: "Channel deleted."
+    redirect_to "/forums", notice: "Channel deleted."
   end
 
   private

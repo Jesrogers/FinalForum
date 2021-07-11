@@ -1,0 +1,18 @@
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/WordArray:
+  EnforcedStyle: brackets
+

@@ -13,24 +13,24 @@ User.create!(username: "Freddy", email: "testy@gmail.com", password: "testtest",
 User.create!(username: "Coolguyjohn", email: "testyy@gmail.com", password: "testtest",
              password_confirmation: "testtest", last_sign_in_at: DateTime.now)
 
-Channel.create(name: 'Employees', position: 2)
-Channel.create(name: 'Departments', position: 3)
-Channel.create(name: 'News', position: 1)
+Channel.create(name: "Employees", position: 2)
+Channel.create(name: "Departments", position: 3)
+Channel.create(name: "News", position: 1)
 
 Forum.create(channel_id: 1, title: "General Discussion", locked: false,
-             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula', position: 0)
+             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula", position: 0)
 Forum.create(channel_id: 1, title: "Marketplace", locked: false,
-             description: 'Suspendisse sollicitudin imperdiet velit, in eleifend sapien', position: 1)
+             description: "Suspendisse sollicitudin imperdiet velit, in eleifend sapien", position: 1)
 Forum.create(channel_id: 1, title: "Finalsite Fitness", locked: false,
-             description: 'Donec mi magna, consequat vel lectus vel, aliquam venenatis eros. Ut ut venenatis dolor', position: 1)
+             description: "Donec mi magna, consequat vel lectus vel, aliquam venenatis eros. Ut ut venenatis dolor", position: 1)
 Forum.create(channel_id: 2, title: "Support", locked: false,
-             description: 'Lectus magna fringilla urna porttitor rhoncus dolor purus non enim. Diam in arcu cursus euismod', position: 1)
+             description: "Lectus magna fringilla urna porttitor rhoncus dolor purus non enim. Diam in arcu cursus euismod", position: 1)
 Forum.create(channel_id: 2, title: "Deployment", locked: false,
-             description: 'Ultricies mi quis hendrerit dolor. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis', position: 1)
+             description: "Ultricies mi quis hendrerit dolor. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis", position: 1)
 Forum.create(channel_id: 2, title: "Development", locked: false,
-             description: 'Suspendisse interdum sapien eu lorem consectetur aliquet. Nunc sagittis ligula vestibulum, aliquam mi ac, sodales risus', position: 1)
+             description: "Suspendisse interdum sapien eu lorem consectetur aliquet. Nunc sagittis ligula vestibulum, aliquam mi ac, sodales risus", position: 1)
 Forum.create(channel_id: 3, title: "Company News", locked: true,
-             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula', position: 1)
+             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula", position: 1)
 
 ForumThread.create(forum_id: 1, author_id: 1, locked: false, pinned: false, title: "This company is great!",
                    body: "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. </p>", created_at: "2021-06-02 12:22:48.662059000 +0000", updated_at: "2021-06-02 12:22:48.662059000 +0000")

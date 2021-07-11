@@ -2,11 +2,9 @@ class PagesController < ApplicationController
   def home
     news_forum = Forum.find_by(title: "Company News")
 
-    if news_forum
-      @news_posts = Forum.find_by(title: "Company News").forum_threads
-    end
+    @news_posts = Forum.find_by(title: "Company News").forum_threads if news_forum
 
-    render 'home', layout: 'home'
+    render "home", layout: "home"
   end
 
   def latest

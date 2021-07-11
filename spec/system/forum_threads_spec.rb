@@ -1,6 +1,6 @@
-require 'rails_helper'
-require './spec/support/forum_helper'
-require './spec/support/cke_helper'
+require "rails_helper"
+require "./spec/support/forum_helper"
+require "./spec/support/cke_helper"
 
 RSpec.describe "ForumThreads", type: :system do
   context "as a guest" do
@@ -12,8 +12,8 @@ RSpec.describe "ForumThreads", type: :system do
 
       expect(page).to have_text("Hello, please ignore this thread. It is being used for testing. Thanks!")
       expect(page).to have_text(thread.author.username)
-      expect(page).to have_text(thread.author.created_at.strftime('%b %Y'))
-      expect(page).to have_text(thread.created_at.strftime('%Y-%m-%d, %I:%M %p'))
+      expect(page).to have_text(thread.author.created_at.strftime("%b %Y"))
+      expect(page).to have_text(thread.created_at.strftime("%Y-%m-%d, %I:%M %p"))
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe "ForumThreads", type: :system do
       expect(page).to have_css("#cke_forum_thread_body")
 
       fill_in "Title", with: "I am a brand new thread!"
-      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
+      fill_in_ckeditor("forum_thread_body", with: "I like long walks on the beach")
       click_button "Submit"
 
       expect(page).to have_current_path("/threads/i-am-a-brand-new-thread")
@@ -150,7 +150,7 @@ RSpec.describe "ForumThreads", type: :system do
       expect(page).to have_css("#cke_forum_thread_body")
 
       fill_in "Title", with: "I am a brand new thread!"
-      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
+      fill_in_ckeditor("forum_thread_body", with: "I like long walks on the beach")
       click_button "Submit"
 
       expect(page).to have_current_path("/threads/i-am-a-brand-new-thread")
@@ -170,7 +170,7 @@ RSpec.describe "ForumThreads", type: :system do
 
       click_link("Edit", href: edit_forum_thread_path(thread))
       fill_in "Title", with: "I am a brand new thread!"
-      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
+      fill_in_ckeditor("forum_thread_body", with: "I like long walks on the beach")
       click_button "Submit"
 
       expect(page).to have_current_path("/threads/i-am-a-brand-new-thread")
@@ -208,7 +208,7 @@ RSpec.describe "ForumThreads", type: :system do
 
       click_link("Edit", href: edit_forum_thread_path(thread))
       fill_in "Title", with: "I am an edited thread!"
-      fill_in_ckeditor('forum_thread_body', with: "I like long walks on the beach")
+      fill_in_ckeditor("forum_thread_body", with: "I like long walks on the beach")
       click_button "Submit"
 
       expect(page).to have_current_path("/threads/i-am-an-edited-thread")
