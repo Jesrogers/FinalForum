@@ -2,11 +2,11 @@
 
 Mock forum application for my company that allows for users to interact with one another via threads & replies.
 
-Deployed at: [https://finalforum.herokuapp.com).
+Deployed at: [https://finalforum.herokuapp.com](https://finalforum.herokuapp.com).
 
 **Premade account credentials:**
 
-**Username** - visitor@example.com
+**Username** - visitor@example.com \
 **Password** - testing
 
 ## Project Features
