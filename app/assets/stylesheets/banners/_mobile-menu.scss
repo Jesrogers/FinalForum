@@ -15,6 +15,10 @@
     opacity: 0;
     transform: translateX(20%);
 
+    @include breakpoint(800px) {
+        display: none;
+    }
+
     .menu-open & {
         visibility: visible;
         opacity: 1;
