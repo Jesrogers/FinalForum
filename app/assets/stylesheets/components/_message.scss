@@ -3,6 +3,12 @@
     margin-bottom: 1.25rem;
     border-radius: 8px;
 
+    &--info {
+        color: darken($m4, 12%);
+        background: rgba($m4, .1);
+        border: 1px solid $m4;
+    }
+
     &--danger {
         color: darken($m2, 12%);
         background: rgba($m2, .2);
