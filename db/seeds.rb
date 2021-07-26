@@ -13,7 +13,7 @@ User.create!(username: "Freddy", email: "freddy@example.com", password: "testtes
              last_sign_in_at: DateTime.now)
 User.create!(username: "Coolguyjohn", email: "coolguyjohn@example.com", password: "testtest",
              password_confirmation: "testtest", last_sign_in_at: DateTime.now)
-User.create!(username: "Visitor", email: "visitor@example.com", password: "testtest",
+User.create!(username: "Visitor", email: "visitor@example.com", password: "testing",
              password_confirmation: "testing", last_sign_in_at: DateTime.now)
 
 Channel.create(name: "Employees", position: 2)
