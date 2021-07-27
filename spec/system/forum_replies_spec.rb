@@ -30,7 +30,7 @@ RSpec.describe "ForumReplies", type: :system do
       go_to_forum_thread(thread)
       expect(page).to have_css("#cke_forum_reply_body")
 
-      fill_in_ckeditor("forum_reply_body", with: "Hello, nice to meet you!")
+      fill_in_ckeditor("forum_reply_body", with: "Hello, nice to meet you! My name is #{user.username}")
       click_button "Submit"
 
       expect(page).to have_current_path(forum_thread_path(thread))
